@@ -1,0 +1,4 @@
+Diary Entries:
+
+27/10/2022: - Begun to research into the different types of Machine Learning Algotithms
+            - looked in K-Nearest Neighbour, how it works and how to implement it
