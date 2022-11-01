@@ -8,4 +8,6 @@ Diary Entries:
 01/11/2022: - Moved python coding to Jupyter Notebook - so that all data can be visualised/compiled in one place
             - Reasearched the seaborn library to potentially visualise data on informative statistical graphic
             - Also reasearched Pandas library - to potentially analyse datasets
-            
+            - split the data set using scikit-Learn
+            - Created a method to workout the Euclidean distance between two points
+            - Created a method to work out the KNN
