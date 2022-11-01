@@ -4,3 +4,8 @@ Diary Entries:
             - looked in K-Nearest Neighbour, how it works and how to implement it
 28/10/2022: - Installed scikit-learn 
             - Added dataset to repositry
+
+01/11/2022: - Moved python coding to Jupyter Notebook - so that all data can be visualised/compiled in one place
+            - Reasearched the seaborn library to potentially visualise data on informative statistical graphic
+            - Also reasearched Pandas library - to potentially analyse datasets
+            
