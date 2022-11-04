@@ -11,3 +11,10 @@ Diary Entries:
             - split the data set using scikit-Learn
             - Created a method to workout the Euclidean distance between two points
             - Created a method to work out the KNN
+
+04/11/2022: - Trying to convert .csv file into a .txt file - because reading the file by row has become difficult
+            - Created a sort method to sort out the distances in ascending order
+            - Used numpy's genfromtxt instead, but dataset is too large and takes too long to process
+            - Broke down dataset into first 200 entries, because dataset is too large to process
+            - Created method for 1NN to test
+            - Numpy's genfromtxt doesn't like the engineSize and tax variables - so I have left them out for the time being
