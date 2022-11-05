@@ -2,8 +2,10 @@ Diary Entries:
 
 27/10/2022: - Begun to research into the different types of Machine Learning Algotithms
             - looked in K-Nearest Neighbour, how it works and how to implement it
+
 28/10/2022: - Installed scikit-learn 
             - Added dataset to repositry
+
 
 01/11/2022: - Moved python coding to Jupyter Notebook - so that all data can be visualised/compiled in one place
             - Reasearched the seaborn library to potentially visualise data on informative statistical graphic
@@ -12,9 +14,17 @@ Diary Entries:
             - Created a method to workout the Euclidean distance between two points
             - Created a method to work out the KNN
 
-04/11/2022: - Trying to convert .csv file into a .txt file - because reading the file by row has become difficult
+03/11/2022: - Trying to convert .csv file into a .txt file - because reading the file by row has become difficult
             - Created a sort method to sort out the distances in ascending order
             - Used numpy's genfromtxt instead, but dataset is too large and takes too long to process
-            - Broke down dataset into first 200 entries, because dataset is too large to process
+
+04/11/2022: - Broke down dataset into first 200 entries, because dataset is too large to process
             - Created method for 1NN to test
             - Numpy's genfromtxt doesn't like the engineSize and tax variables - so I have left them out for the time being
+            
+
+05/11/2022: - Created a prediction method to predict the price of the cars
+            - Results from prediction method are returning in an unwanted format
+            - Using Pandas library to read from library - for effiency and better readings from the dataset
+            
+
