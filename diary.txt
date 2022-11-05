@@ -6,15 +6,14 @@ Diary Entries:
 28/10/2022: - Installed scikit-learn 
             - Added dataset to repositry
 
-
-01/11/2022: - Moved python coding to Jupyter Notebook - so that all data can be visualised/compiled in one place
+01/11/2022: - Started coding to Jupyter Notebook - so that all data can be visualised/compiled in one place
             - Reasearched the seaborn library to potentially visualise data on informative statistical graphic
             - Also reasearched Pandas library - to potentially analyse datasets
             - split the data set using scikit-Learn
             - Created a method to workout the Euclidean distance between two points
             - Created a method to work out the KNN
 
-03/11/2022: - Trying to convert .csv file into a .txt file - because reading the file by row has become difficult
+03/11/2022: - Trying to convert .csv file into a .txt file - because reading the data set file by row has become difficult
             - Created a sort method to sort out the distances in ascending order
             - Used numpy's genfromtxt instead, but dataset is too large and takes too long to process
 
@@ -26,5 +25,8 @@ Diary Entries:
 05/11/2022: - Created a prediction method to predict the price of the cars
             - Results from prediction method are returning in an unwanted format
             - Using Pandas library to read from library - for effiency and better readings from the dataset
+            - Created a seaborn heatmap to visualise dataset
+            - Looked into Seaborn's distplots graph
+
             
 
