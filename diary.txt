@@ -19,8 +19,7 @@ Diary Entries:
 
 04/11/2022: - Broke down dataset into first 200 entries, because dataset is too large to process
             - Created method for 1NN to test
-            - Numpy's genfromtxt doesn't like the engineSize and tax variables - so I have left them out for the time being
-            
+            - Numpy's genfromtxt doesn't like the engineSize and tax variables - so I have left them out for the time being      
 
 05/11/2022: - Created a prediction method to predict the price of the cars
             - Results from prediction method are returning in an unwanted format
