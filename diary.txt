@@ -33,5 +33,8 @@ Diary Entries:
 
 18/11/2022: - Began writing the methodology in the interim report
 
-            
+21/11/2022: - Begun writting decription of KNN algorithm to Interim report
+
+23/11/2022: - Begun coding the decsion tree algorithm
+            - Begun writting decription of decision algorithm to Interim report
 
