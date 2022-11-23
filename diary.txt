@@ -35,6 +35,8 @@ Diary Entries:
 
 21/11/2022: - Begun writting decription of KNN algorithm to Interim report
 
-23/11/2022: - Begun coding the decsion tree algorithm
+23/11/2022: - Begun coding the decsion tree algorithm: imported & split data, method using scikit-learn, entropy method
             - Begun writting decription of decision algorithm to Interim report
+            - Attempted to vidsualise the decsion tree
+
 
