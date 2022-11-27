@@ -39,4 +39,8 @@ Diary Entries:
             - Begun writting decription of decision algorithm to Interim report
             - Attempted to vidsualise the decsion tree
 
+25/11/2022: - Normalised data for KNN
+            - Added preprocessing and normalization to Interim report
+            - Removed unnecessary .txt files
+
 
