@@ -43,4 +43,7 @@ Diary Entries:
             - Added preprocessing and normalization to Interim report
             - Removed unnecessary .txt files
 
+26/11/2022: - Fixed issued with reading normalised data
+            - Added code examples to interim report
+
 
