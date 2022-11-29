@@ -46,4 +46,6 @@ Diary Entries:
 26/11/2022: - Fixed issued with reading normalised data
             - Added code examples to interim report
 
+29/11/2022: - Completed the evaluation method for KNN, using RMSE
+
 
