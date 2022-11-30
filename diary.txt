@@ -48,4 +48,7 @@ Diary Entries:
 
 29/11/2022: - Completed the evaluation method for KNN, using RMSE
 
+30/11/2022: - Changed how I reduced data set to increase accuracy by 0.3 at peak
+            - Used Pandas feature "get_dummies()" to generate dummy variables for model, transmission and fuel type
+
 
