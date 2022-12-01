@@ -52,6 +52,7 @@ Diary Entries:
             - Used Pandas feature "get_dummies()" to generate dummy variables for model, transmission and fuel type
             - Created a user input to get prediction of their own car
 
-01/12/2022: - Removed "get_dummies()" and replaced with "LabelEncoder()" 
+01/12/2022: - Removed "get_dummies()" and replaced with "LabelEncoder()"
+            - Completed user prediction input - fully working
 
 
