@@ -55,4 +55,6 @@ Diary Entries:
 01/12/2022: - Removed "get_dummies()" and replaced with "LabelEncoder()"
             - Completed user prediction input - fully working
 
+02/12/2022: - Fixed an issue with prediction, where predictions were completely wrong - fixed by normalising user input
+
 
