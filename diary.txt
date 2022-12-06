@@ -58,3 +58,6 @@ Diary Entries:
 02/12/2022: - Fixed an issue with prediction, where predictions were completely wrong - fixed by normalising user input
 
 
+05/12/2022: - Worked on decision tree algorithm - understanding what each method does
+            - Calculated how many times euclidean distance is calculated and how long a single prediction takes
+            - Described my KNN algorithm code in the interim report
