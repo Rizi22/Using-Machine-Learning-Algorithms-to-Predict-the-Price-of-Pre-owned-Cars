@@ -72,3 +72,5 @@ Diary Entries:
             - Using template entropy method to calculate entropy of a node - temporary to test later methods
             - Created method to calculate information gain
             - Completed best split and tree build methods
+
+08/12/2022: - Created method to predict the price of a car - currenlty not working fully
