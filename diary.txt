@@ -68,4 +68,7 @@ Diary Entries:
                 - Created start of build tree method
 
 07/12/2022: - Added to build tree method
+            - Created method to find the best split
             - Created a method to find split tree into branches
+            - Created entropy method to calculate entropy of a node
+            - Created method to calculate information gain
