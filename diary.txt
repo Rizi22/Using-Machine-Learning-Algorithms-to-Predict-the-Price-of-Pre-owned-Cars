@@ -66,9 +66,9 @@ Diary Entries:
                 - Initialised values
                 - Created fit method to put features and label together
                 - Created start of build tree method
+                - Created method to find the best split
 
-07/12/2022: - Added to build tree method
-            - Created method to find the best split
-            - Created a method to find split tree into branches
-            - Created entropy method to calculate entropy of a node
+07/12/2022: - Created a method to find split tree into branches - extention of best split method
+            - Using template entropy method to calculate entropy of a node - temporary to test later methods
             - Created method to calculate information gain
+            - Completed best split and tree build methods
