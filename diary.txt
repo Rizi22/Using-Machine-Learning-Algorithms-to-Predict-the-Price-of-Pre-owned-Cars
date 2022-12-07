@@ -61,3 +61,10 @@ Diary Entries:
 05/12/2022: - Worked on decision tree algorithm - understanding what each method does
             - Calculated how many times euclidean distance is calculated and how long a single prediction takes
             - Described my KNN algorithm code in the interim report
+
+06/12/2022: - Created Decision tree class
+                - Initialised values
+                - Created fit method to put features and label together
+                - Created start of build tree method
+
+07/12/2022: - 
