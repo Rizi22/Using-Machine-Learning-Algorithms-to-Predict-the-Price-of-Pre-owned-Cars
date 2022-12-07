@@ -67,4 +67,5 @@ Diary Entries:
                 - Created fit method to put features and label together
                 - Created start of build tree method
 
-07/12/2022: - 
+07/12/2022: - Added to build tree method
+            - Created a method to find the best split
