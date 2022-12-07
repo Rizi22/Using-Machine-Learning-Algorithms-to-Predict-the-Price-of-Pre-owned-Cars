@@ -75,3 +75,4 @@ Diary Entries:
             - Created method to predict the price of a car - currenlty not working fully
 
 08/12/2022: - Fixed predict and best split methods
+            - Created method to evaluate and calculate the RMSE of the decision tree
