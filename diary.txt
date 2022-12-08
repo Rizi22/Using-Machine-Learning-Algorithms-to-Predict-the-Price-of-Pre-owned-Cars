@@ -1,16 +1,16 @@
 Diary Entries:
 
-27/10/2022: - Begun to research into the different types of Machine Learning Algotithms
+27/10/2022: - Begun to research into the different types of Machine Learning Algorithms
             - looked in K-Nearest Neighbour, how it works and how to implement it
 
 28/10/2022: - Installed scikit-learn 
-            - Added dataset to repositry
+            - Added dataset to repository
 
 01/11/2022: - Started coding to Jupyter Notebook - so that all data can be visualised/compiled in one place
-            - Reasearched the seaborn library to potentially visualise data on informative statistical graphic
-            - Also reasearched Pandas library - to potentially analyse datasets
+            - Researched the seaborn library to potentially visualise data on informative statistical graphic
+            - Also Researched Pandas library - to potentially analyse datasets
             - split the data set using scikit-Learn
-            - Created a method to workout the Euclidean distance between two points
+            - Created a method to work out the Euclidean distance between two points
             - Created a method to work out the KNN
 
 03/11/2022: - Trying to convert .csv file into a .txt file - because reading the data set file by row has become difficult
@@ -24,20 +24,20 @@ Diary Entries:
 
 05/11/2022: - Created a prediction method to predict the price of the cars
             - Results from prediction method are returning in an unwanted format
-            - Using Pandas library to read from library - for effiency and better readings from the dataset
+            - Using Pandas library to read from library - for efficiency and better readings from the dataset
             - Created a seaborn heatmap to visualise dataset
             - Looked into Seaborn's distplots graph
 
-17/11/2022: - Began writing the evaluation method for KNN - is currenlty suited for classification, not regression
+17/11/2022: - Began writing the evaluation method for KNN - is currently suited for classification, not regression
             - Began work writing interim report.
 
 18/11/2022: - Began writing the methodology in the interim report
 
-21/11/2022: - Begun writting decription of KNN algorithm to Interim report
+21/11/2022: - Begun writing description of KNN algorithm to Interim report
 
-23/11/2022: - Begun coding the decsion tree algorithm: imported & split data, method using scikit-learn, entropy method
-            - Begun writting decription of decision algorithm to Interim report
-            - Attempted to vidsualise the decsion tree
+23/11/2022: - Begun coding the decision tree algorithm: imported & split data, method using scikit-learn, entropy method
+            - Begun writing description of decision algorithm to Interim report
+            - Attempted to visualise the decision tree
 
 25/11/2022: - Normalised data for KNN
             - Added preprocessing and normalization to Interim report
@@ -59,7 +59,7 @@ Diary Entries:
 
 
 05/12/2022: - Worked on decision tree algorithm - understanding what each method does
-            - Calculated how many times euclidean distance is calculated and how long a single prediction takes
+            - Calculated how many times Euclidean distance is calculated and how long a single prediction takes
             - Described my KNN algorithm code in the interim report
 
 06/12/2022: - Created Decision tree class
@@ -68,11 +68,11 @@ Diary Entries:
                 - Created start of build tree method
                 - Created method to find the best split
 
-07/12/2022: - Created a method to find split tree into branches - extention of best split method
+07/12/2022: - Created a method to find split tree into branches - extension of best split method
             - Using template entropy method to calculate entropy of a node - temporary to test later methods
             - Created method to calculate information gain
             - Completed best split and tree build methods
-            - Created method to predict the price of a car - currenlty not working fully
+            - Created method to predict the price of a car - currently not working fully
 
 08/12/2022: - Fixed predict and best split methods
             - Created method to evaluate and calculate the RMSE of the decision tree
