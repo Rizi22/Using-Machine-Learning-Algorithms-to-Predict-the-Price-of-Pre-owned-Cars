@@ -76,3 +76,4 @@ Diary Entries:
 
 08/12/2022: - Fixed predict and best split methods
             - Created method to evaluate and calculate the RMSE of the decision tree
+            - Completed Interim report
