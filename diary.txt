@@ -1,5 +1,7 @@
 Diary Entries:
 
+Term 1:
+
 27/10/2022: - Begun to research into the different types of Machine Learning Algorithms
             - looked in K-Nearest Neighbour, how it works and how to implement it
 
@@ -77,3 +79,7 @@ Diary Entries:
 08/12/2022: - Fixed predict and best split methods
             - Created method to evaluate and calculate the RMSE of the decision tree
             - Completed Interim report
+
+Term 2:
+
+16/12/2022: - KNN and decision tree algorithm work with all car models on dataset
