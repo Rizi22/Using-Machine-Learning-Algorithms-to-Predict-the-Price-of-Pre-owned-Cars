@@ -83,3 +83,5 @@ Term 1:
 Term 2:
 
 16/12/2022: - KNN and decision tree algorithm work with all car models on dataset
+            - Begun Final report
+            - Created a Trello board to keep track of tasks
