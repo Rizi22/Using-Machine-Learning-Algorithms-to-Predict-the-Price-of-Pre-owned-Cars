@@ -87,3 +87,5 @@ Term 2:
             - Created a Trello board to keep track of tasks
             
 17/12/2022: - Installed PyQt5 to build GUI
+
+19/12/2022: - Created a PyQt file and tested UI design
