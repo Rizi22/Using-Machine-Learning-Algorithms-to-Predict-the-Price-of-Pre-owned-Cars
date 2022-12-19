@@ -2,8 +2,6 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5 import uic
 
-from nearestNeighbour import UserInput
-
 class Test(QWidget):
     def __init__(self):
         super().__init__()

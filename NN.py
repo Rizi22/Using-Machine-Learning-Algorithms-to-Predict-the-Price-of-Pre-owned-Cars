@@ -91,8 +91,8 @@ class NN():
     
     
 
-    def userInput(self):
-        chooseBrand = input("Choose your car brand: Audi, BMW, Ford, Hyundi, Mercedes, Skoda, Toyota, Vauxhall or Volkswagen \n")
+    def userInput(self, chooseBrand):
+        # chooseBrand = input("Choose your car brand: Audi, BMW, Ford, Hyundi, Mercedes, Skoda, Toyota, Vauxhall or Volkswagen \n")
         
         if chooseBrand == "Audi":
             return "UKUsedCarDataSet/audi.csv"
@@ -115,25 +115,63 @@ class NN():
         else:
             print("Invalid Car Brand")
             # userInput()
-        return 
+            return
+            
     
-    def main(self):
+    # def main(self):
+    #     inputPred = []
+    #     entries = []
+
+    #     chooseBrand = input("Choose your car brand: Audi, BMW, Ford, Hyundi, Mercedes, Skoda, Toyota, Vauxhall or Volkswagen \n")
+
+    #     X_train, X_test, Y_train, Y_test = self.dataset(self.userInput(chooseBrand))
+
+    #     print("\n List of models:")
+    #     print(list(self.modelEncoder.classes_))
+
+        # inputPred.append((self.modelEncoder.transform([input("\nWhat Model is your car? ")]))[0])
+    #     inputPred.append(int(input("What year is your car? ")))
+    #     inputPred.append((self.transmissionEncoder.transform([input("What transmission is your car? ")]))[0])
+    #     inputPred.append(int(input("How much mileage does your car have? ")))
+    #     inputPred.append((self.fuelTypeEncoder.transform([input("What's your car fuel type? ")]))[0])
+    #     inputPred.append(int(input("How much is your cars tax? ")))
+    #     inputPred.append(float(input("What's MPG of your car? ")))
+    #     inputPred.append(float(input("What the engine size of your car? ")))
+    #     entries.append(inputPred)
+    #     inputPred = self.scaler.transform([inputPred])
+
+    #     import time
+    #     print("\n ***Predicting***")
+    #     start = time.time()
+    #     y_pred = self.predict(X_train, inputPred, Y_train, 4)
+    #     # {0:.2f}'.format()
+    #     print("\n Predicted price for your car is: £", y_pred[0])
+
+    #     print("\n ***Predicted in", time.time() - start,"seconds***")
+
+    #     # Audi,RS6,2016,Semi-Auto,49050,Petrol,325,29.4,4.0    Price = £44,985 Pred:43,993 --- £44717
+    #     # BMW,5 Series,2019,Semi-Auto,4405,Petrol,145,48.7,2.0     Price = £26,000
+    #     # Skoda,Octavia,2019,Manual,14449,Petrol,150,55.4,1.5      Price = £13,490
+
+    def run(self, chooseBrand, model, year, transmission, mileage, fuelType, tax, mpg, engineSize):
         inputPred = []
         entries = []
 
-        X_train, X_test, Y_train, Y_test = self.dataset(self.userInput())
+        # chooseBrand = input("Choose your car brand: Audi, BMW, Ford, Hyundi, Mercedes, Skoda, Toyota, Vauxhall or Volkswagen \n")
+
+        X_train, X_test, Y_train, Y_test = self.dataset(self.userInput(chooseBrand))
 
         print("\n List of models:")
         print(list(self.modelEncoder.classes_))
 
-        inputPred.append((self.modelEncoder.transform([input("\nWhat Model is your car? ")]))[0])
-        inputPred.append(int(input("What year is your car? ")))
-        inputPred.append((self.transmissionEncoder.transform([input("What transmission is your car? ")]))[0])
-        inputPred.append(int(input("How much mileage does your car have? ")))
-        inputPred.append((self.fuelTypeEncoder.transform([input("What's your car fuel type? ")]))[0])
-        inputPred.append(int(input("How much is your cars tax? ")))
-        inputPred.append(float(input("What's MPG of your car? ")))
-        inputPred.append(float(input("What the engine size of your car? ")))
+        inputPred.append((self.modelEncoder.transform([model]))[0])
+        inputPred.append(int(year))
+        inputPred.append((self.transmissionEncoder.transform([transmission]))[0])
+        inputPred.append(int(mileage))
+        inputPred.append((self.fuelTypeEncoder.transform([fuelType]))[0])
+        inputPred.append(int(tax))
+        inputPred.append(float(mpg))
+        inputPred.append(float(engineSize))
         entries.append(inputPred)
         inputPred = self.scaler.transform([inputPred])
 
@@ -150,5 +188,6 @@ class NN():
         # BMW,5 Series,2019,Semi-Auto,4405,Petrol,145,48.7,2.0     Price = £26,000
         # Skoda,Octavia,2019,Manual,14449,Petrol,150,55.4,1.5      Price = £13,490
 
-test = NN()
-test.main()
+
+# test = NN()
+# test.run("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
