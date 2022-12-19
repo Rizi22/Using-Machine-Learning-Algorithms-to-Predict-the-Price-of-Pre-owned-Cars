@@ -10,13 +10,13 @@ class NN_UI(QWidget):
     def __init__(self):
         super().__init__()
         uic.loadUi('nearestNeighbourUI.ui', self)
-        
+        self.transmissionCombo.addItems(["Manual", "Automatic", "Semi-Auto"])
         self.button.clicked.connect(self.runUI)
     
     def runUI(self):
-        print(self.brandBox.text())
+        print(self.transmissionCombo.currentText())
         NN.UIInput(self.brandBox.text(), self.modelBox.text(), self.yearBox.text(), 
-               self.transmissionBox.text(), self.mileageBox.text(), self.fuelBox.text(), 
+               self.transmissionCombo.currentText(), self.mileageBox.text(), self.fuelBox.text(), 
                self.taxBox.text(), self.mpgBox.text(), self.engineBox.text())     
 
 if __name__ == '__main__':
