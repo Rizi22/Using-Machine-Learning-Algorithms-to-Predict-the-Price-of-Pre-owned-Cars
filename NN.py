@@ -9,13 +9,13 @@ from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import LabelEncoder
 
 class NN():
+    
     def __init__(self):
         self.modelEncoder = LabelEncoder()
         self.transmissionEncoder = LabelEncoder()
         self.fuelTypeEncoder = LabelEncoder()
         self.scaler = MinMaxScaler()
     
-
     def dataset(self, brand):
 
         file = pd.read_csv(brand, quotechar='"', skipinitialspace=True)
@@ -33,8 +33,6 @@ class NN():
 
         X = file.drop(columns = ['price'])
         Y = file.price
-
-    #     print(file)
         
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state = 601)
         
@@ -53,11 +51,10 @@ class NN():
 
     def kNN(self, train, testRow, yTrain, num):
         distance = list() #Stores distance of each point
-        for i in range(len(train)): #REMOVED -1 from here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        for i in range(len(train)): 
             dist = self.eucDistance(train[i], testRow) #sends points to work out distance
-            distance.append((train[i], dist, yTrain.iloc[i])) #CHNAGEEE
-        distance = self.sort(distance) #need to create a sort method to order list
-    #     print("DISTANCE: ", distance)
+            distance.append((train[i], dist, yTrain.iloc[i])) 
+        distance = self.sort(distance)
         kNeighbours = list() #list to store K amount of neighbour results
         for i in range(num):
             kNeighbours.append((testRow, distance[i][1], distance[i][2]))
@@ -72,8 +69,6 @@ class NN():
                     dist[j + 1] = temp
         return dist
     
-
-
     def predict(self, train, test, yTrain, num_neighbors):
         from statistics import mean 
         predictions = list()
@@ -88,8 +83,6 @@ class NN():
     def rmse(self, test, pred):
         MSE = np.square(np.subtract(test, pred)).mean()
         return sqrt(MSE)
-    
-    
 
     def userInput(self, chooseBrand):
         

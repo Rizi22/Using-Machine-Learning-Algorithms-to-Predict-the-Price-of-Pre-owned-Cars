@@ -95,3 +95,4 @@ Term 2:
 
 20/12/2022: - Created an appealing UI design and a main page 
                 - Main page links to KNN and (soon) decision tree pages
+                - Added radio button to choose which ML algorithm to use

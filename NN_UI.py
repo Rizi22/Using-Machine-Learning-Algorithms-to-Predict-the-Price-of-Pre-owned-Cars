@@ -53,10 +53,8 @@ class mainMenuUI(QDialog):
         self.pushButton.clicked.connect(self.goToPage)
     
     def goToPage(self):
-        # NNPage = NN_UI()
-        # NNPage.show()
-        # widget.addWidget(NNPage)
-        widget.setCurrentIndex(widget.currentIndex()+1)
+        if (self.KNNButton.isChecked()):
+                widget.setCurrentIndex(widget.currentIndex()+1)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
