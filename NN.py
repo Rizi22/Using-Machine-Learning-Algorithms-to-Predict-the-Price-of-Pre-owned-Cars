@@ -114,15 +114,17 @@ class NN():
         else:
             print("Invalid Car Brand")
             return
+
+    def testing(self, chooseBrand):
+        self.dataset(self.userInput(chooseBrand))
+        return
+        
             
     def UIInput(self, chooseBrand, model, year, transmission, mileage, fuelType, tax, mpg, engineSize):
         inputPred = []
         entries = []
 
         X_train, X_test, Y_train, Y_test = self.dataset(self.userInput(chooseBrand))
-
-        print("\n List of models:")
-        print(list(self.modelEncoder.classes_))
 
         inputPred.append((self.modelEncoder.transform([model]))[0])
         inputPred.append(int(year))
