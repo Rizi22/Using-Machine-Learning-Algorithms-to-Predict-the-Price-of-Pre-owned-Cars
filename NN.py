@@ -9,7 +9,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import LabelEncoder
 
 class NN():
-    
+
     def __init__(self):
         self.modelEncoder = LabelEncoder()
         self.transmissionEncoder = LabelEncoder()
@@ -92,7 +92,7 @@ class NN():
             return "UKUsedCarDataSet/bmw.csv"
         elif chooseBrand == "Ford":
             return "UKUsedCarDataSet/ford.csv"
-        elif chooseBrand == "Hyundi":
+        elif chooseBrand == "Hyundai":
             return "UKUsedCarDataSet/hyundi.csv"
         elif chooseBrand == "Mercedes":
             return "UKUsedCarDataSet/merc.csv"
