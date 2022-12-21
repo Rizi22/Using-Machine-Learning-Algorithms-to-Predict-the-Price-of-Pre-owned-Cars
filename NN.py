@@ -138,6 +138,7 @@ class NN():
         print("\n Predicted price for your car is: £", y_pred[0])
 
         print("\n ***Predicted in", time.time() - start,"seconds***")
+        return y_pred[0]
 
 # test = NN()
 # test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
