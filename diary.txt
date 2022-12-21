@@ -89,7 +89,7 @@ Term 2:
 17/12/2022: - Installed PyQt5 to build GUI
 
 19/12/2022: - Created a PyQt file and tested UI design
-            - Created NN.py file for nearestNeighbour algorithm
+            - Created NN.py file for the K-Nearest Neighbour algorithm
                 - Modified code of nearestNeighbour.ipynb that allows other files to access functions from the file
             - created "runUI.py" to run the GUI
 
@@ -97,3 +97,7 @@ Term 2:
                 - Main page with with radio buttons to choose which ML algorithm to use
                 - Created a page for the KNN algorithm
                 - Created a page to clearly state the predicted price
+
+21/12/2022: - Created DT.py file for the decision tree algorithm
+                - Modified code of decision_tree.ipynb that allows other files to access functions from the file
+            
