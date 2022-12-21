@@ -40,6 +40,11 @@ class DT():
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state = 601)
         
         return  X_train, X_test, Y_train, Y_test
+    
+    
+    def testing(self, chooseBrand):
+        self.dataset(self.userInput(chooseBrand))
+        return
 
     def userInput(self, chooseBrand):
         

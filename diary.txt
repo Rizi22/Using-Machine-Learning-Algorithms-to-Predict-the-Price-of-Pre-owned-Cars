@@ -100,4 +100,4 @@ Term 2:
 
 21/12/2022: - Created DT.py file for the decision tree algorithm
                 - Modified code of decision_tree.ipynb that allows other files to access functions from the file
-            
+            - Created a separate UI page for the decision tree algorithm
