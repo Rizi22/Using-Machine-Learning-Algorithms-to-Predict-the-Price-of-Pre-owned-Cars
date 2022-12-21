@@ -94,5 +94,6 @@ Term 2:
             - created "runUI.py" to run the GUI
 
 20/12/2022: - Created an appealing UI design and a main page 
-                - Main page links to KNN and (soon) decision tree pages
-                - Added radio button to choose which ML algorithm to use
+                - Main page with with radio buttons to choose which ML algorithm to use
+                - Created a page for the KNN algorithm
+                - Created a page to clearly state the predicted price
