@@ -103,7 +103,7 @@ border-radius:15px;</string>
     <property name="geometry">
      <rect>
       <x>910</x>
-      <y>590</y>
+      <y>580</y>
       <width>141</width>
       <height>41</height>
      </rect>
@@ -113,7 +113,7 @@ border-radius:15px;</string>
 background-color: rgb(225, 225, 225);</string>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Predict</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">
@@ -324,6 +324,23 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>KNN Car Price Predictor</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="backButton">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>40</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:15px;
+background-color: rgb(225, 225, 225);</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
     </property>
    </widget>
   </widget>

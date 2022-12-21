@@ -38,6 +38,8 @@ class NN_UI(QDialog):
 
         # self.fuelCombo.setCurrentIndex (-1)
 
+        self.backButton.clicked.connect(self.backPage)
+
         self.button.clicked.connect(self.runUI)
     
     def runUI(self):
@@ -54,13 +56,26 @@ class NN_UI(QDialog):
         self.modelCombo.clear()
         self.modelCombo.addItems(list(NN.modelEncoder.classes_))
         print("test")
+    
+    def backPage(self):
+        widget.setCurrentIndex(widget.currentIndex() - 1)
 
 class predPage(QDialog):
 
     def __init__(self):
         super().__init__()
         uic.loadUi('predictionUI.ui', self)
-        self.label_2.setText("£0")
+
+        self.pushButton.clicked.connect(self.backPage)
+        self.startButton.clicked.connect(self.homePage)
+    
+    def backPage(self):
+        widget.setCurrentIndex(widget.currentIndex() - 1)
+    
+    def homePage(self):
+        (widget.currentIndex() - 1).update()
+        widget.setCurrentIndex(widget.currentIndex() - 2)
+
         
 if __name__ == '__main__':
 
