@@ -106,6 +106,7 @@ class DT():
 
         # RS6,2016,Semi-Auto,49050,Petrol,325,29.4,4.0 -- Price is £44,985   Pred = £41,233.30
         # BMW,5 Series,2019,Semi-Auto,4405,Petrol,145,48.7,2.0     Price = £26,000 Pred = £27,077.49 
+        return y_pred[0]
 
       
 # Node class to initialise instances of each 
