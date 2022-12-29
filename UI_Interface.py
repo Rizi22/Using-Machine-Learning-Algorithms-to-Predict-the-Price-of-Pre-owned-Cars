@@ -1,4 +1,5 @@
 import sys
+import os
 from PyQt5.QtWidgets import QApplication, QWidget, QDialog
 from PyQt5 import uic, QtCore
 from PyQt5 import QtWidgets
@@ -7,11 +8,19 @@ NN = NN()
 from DT import DT
 DT = DT()
 
+def path(relative_path):
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
 class mainMenuUI(QDialog):
     
     def __init__(self):
         super().__init__()
-        uic.loadUi('mainMenuUI.ui', self)
+        uic.loadUi(path('UI_Files/mainMenuUI.ui'), self)
         
         self.setWindowTitle('Pre-Owned Car Price Predictor')
         self.label.setAlignment(QtCore.Qt.AlignCenter)
@@ -36,7 +45,7 @@ class InputUI(QDialog):
 
     def __init__(self):
         super().__init__()
-        uic.loadUi('InputUI.ui', self)
+        uic.loadUi(path('UI_Files/InputUI.ui'), self)
         self.algorithm = ''
         self.label1.setAlignment(QtCore.Qt.AlignCenter)
 
@@ -76,7 +85,7 @@ class predPage(QDialog):
 
     def __init__(self):
         super().__init__()
-        uic.loadUi('predictionUI.ui', self)
+        uic.loadUi(path('UI_Files/predictionUI.ui'), self)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
 
@@ -96,11 +105,11 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     widget = QtWidgets.QStackedWidget()
 
-    UI = mainMenuUI()
+    UIMenu = mainMenuUI()
     Input_UI = InputUI()
     pred = predPage()
 
-    widget.addWidget(UI)
+    widget.addWidget(UIMenu)
     widget.addWidget(Input_UI)
     widget.addWidget(pred)
     widget.setFixedHeight(700)
@@ -111,4 +120,3 @@ if __name__ == '__main__':
         sys.exit(app.exec_())
     except SystemExit:
         print("Closinggg")
-

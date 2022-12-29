@@ -102,3 +102,6 @@ Term 2:
                 - Modified code of decision_tree.ipynb that allows other files to access functions from the file
             - Created a separate UI page for the decision tree algorithm
             - Then made the decision tree and KNN algorithms use the same UI page - to reduce code
+
+29/12/2922: - Converted GUI into a single executable file, so that it can be run on any Windows system
+                - Faced problem with executable file not detecting the .ui files
