@@ -103,5 +103,7 @@ Term 2:
             - Created a separate UI page for the decision tree algorithm
             - Then made the decision tree and KNN algorithms use the same UI page - to reduce code
 
-29/12/2922: - Converted GUI into a single executable file, so that it can be run on any Windows system
-                - Faced problem with executable file not detecting the .ui files
+29/12/2022: - Converted GUI into a single executable file, so that it can be run on any Windows system
+                - Faced problem with executable file not detecting the .ui files - fixed by putting UI files in a folder
+
+23/01/2023: - Begun research into Random Forest
