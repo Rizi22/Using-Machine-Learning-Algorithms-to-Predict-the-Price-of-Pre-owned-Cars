@@ -106,4 +106,8 @@ Term 2:
 29/12/2022: - Converted GUI into a single executable file, so that it can be run on any Windows system
                 - Faced problem with executable file not detecting the .ui files - fixed by putting UI files in a folder
 
-23/01/2023: - Begun research into Random Forest
+23/01/2023: - Begun research into Random Forest 
+
+25/01/2023: - Continuted research into Random Forest - taking notes
+            - Created Jupyter Notebook page of Random Forest Algorithm
+            - Perfromed GridSearchCV for Decision Tree to find the optimal parameters (max depth)
