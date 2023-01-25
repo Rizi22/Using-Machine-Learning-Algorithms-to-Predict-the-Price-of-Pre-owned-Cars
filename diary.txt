@@ -111,3 +111,4 @@ Term 2:
 25/01/2023: - Continuted research into Random Forest - taking notes
             - Created Jupyter Notebook page of Random Forest Algorithm
             - Perfromed GridSearchCV for Decision Tree to find the optimal parameters (max depth)
+            - Applied GridSearchCV parameters to my decision tree algorithm codes

@@ -77,11 +77,8 @@ class DT():
 
         X_train, X_test, Y_train, Y_test = self.dataset(self.userInput(chooseBrand))
         print("\n ***Training Tree Model***")
-        myTree = DTRegressor(3, 3)  
+        myTree = DTRegressor(3, 93)  
         myTree.fit(X_train, Y_train)
-
-        # print("\n List of models:")
-        # print(list(self.modelEncoder.classes_))
 
         inputPred.append((self.modelEncoder.transform([model]))[0])
         inputPred.append(int(year))
@@ -92,8 +89,6 @@ class DT():
         inputPred.append(float(mpg))
         inputPred.append(float(engineSize))
         entries.append(inputPred)
-
-        # inputPred = scaler.transform([inputPred])
 
         import time
         print("\n ***Predicting***")
