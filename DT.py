@@ -4,13 +4,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import csv
 from sklearn.preprocessing import MinMaxScaler
-from math import sqrt
-from sklearn.metrics import mean_squared_error 
 from sklearn.preprocessing import LabelEncoder
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error
-from sklearn.tree import plot_tree
 
 class DT():
     
