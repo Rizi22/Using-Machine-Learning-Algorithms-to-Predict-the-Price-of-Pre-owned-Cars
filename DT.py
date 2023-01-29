@@ -5,8 +5,6 @@ from sklearn.model_selection import train_test_split
 import csv
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import LabelEncoder
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import RandomForestRegressor
 
 class DT():
     
