@@ -112,3 +112,7 @@ Term 2:
             - Created Jupyter Notebook page for Random Forest Algorithm
             - Perfromed GridSearchCV for Decision Tree to find the optimal parameters
             - Applied GridSearchCV parameters to my decision tree
+
+29/01/2023: - Created Random Forest class with __init__ method
+
+30/01/2023: - Imported, cleaned and split the dataset for the Random Forest code 

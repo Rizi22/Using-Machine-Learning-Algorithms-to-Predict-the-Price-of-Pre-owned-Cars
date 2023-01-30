@@ -5,8 +5,8 @@ from PyQt5 import uic, QtCore
 from PyQt5 import QtWidgets
 from NN import NN
 NN = NN()
-from DT import DT
-DT = DT()
+from decisionTree import decisionTree
+decisionTree= decisionTree()
 
 def path(relative_path):
     try:
