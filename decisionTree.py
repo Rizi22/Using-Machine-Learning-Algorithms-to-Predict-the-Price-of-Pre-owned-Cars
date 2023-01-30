@@ -6,7 +6,7 @@ import csv
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import LabelEncoder
 
-class DT():
+class decisionTree():
     
     def __init__(self):
         self.modelEncoder = LabelEncoder()
