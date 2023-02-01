@@ -115,4 +115,8 @@ Term 2:
 
 29/01/2023: - Created Random Forest class with __init__ method
 
-30/01/2023: - Imported, cleaned and split the dataset for the Random Forest code 
+30/01/2023: - Imported, cleaned and split the dataset for the Random Forest code
+            - Working on my Random Forest algorithm
+                - testing bagging technique 
+
+01/02/2023: - Created a fit method for the Random Forest algorithm  

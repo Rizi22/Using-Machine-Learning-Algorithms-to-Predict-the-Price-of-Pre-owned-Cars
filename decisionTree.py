@@ -220,5 +220,5 @@ class DTRegressor():
         trainingSet = np.concatenate((X, Y), axis=1) #Joins training data back together
         self.root = self.treeBuild(trainingSet)
 
-# test = DT()
-# test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
+test = decisionTree()
+test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")

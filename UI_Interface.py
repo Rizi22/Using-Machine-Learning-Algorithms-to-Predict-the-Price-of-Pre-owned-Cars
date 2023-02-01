@@ -66,7 +66,7 @@ class InputUI(QDialog):
                self.transmissionCombo.currentText(), self.mileageBox.text(), self.fuelCombo.currentText(), 
                self.taxBox.text(), self.mpgBox.text(), self.engineBox.text())
         elif self.algorithm == "DT":
-            prediction = DT.UIInput(self.brandCombo.currentText(), self.modelCombo.currentText(), self.yearBox.text(), 
+            prediction = decisionTree.UIInput(self.brandCombo.currentText(), self.modelCombo.currentText(), self.yearBox.text(), 
                self.transmissionCombo.currentText(), self.mileageBox.text(), self.fuelCombo.currentText(), 
                self.taxBox.text(), self.mpgBox.text(), self.engineBox.text())
         
@@ -74,9 +74,9 @@ class InputUI(QDialog):
         widget.setCurrentIndex(2)
 
     def test(self):
-        DT.testing(self.brandCombo.currentText())
+        decisionTree.testing(self.brandCombo.currentText())
         self.modelCombo.clear()
-        self.modelCombo.addItems(list(DT.modelEncoder.classes_))
+        self.modelCombo.addItems(list(decisionTree.modelEncoder.classes_))
     
     def backPage(self):
         widget.setCurrentIndex(0)

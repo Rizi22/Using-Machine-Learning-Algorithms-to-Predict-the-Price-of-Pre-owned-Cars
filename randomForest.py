@@ -6,8 +6,8 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import LabelEncoder
 
 from collections import Counter
-from decisionTree import decisionTree
-decisionTree = decisionTree()
+from decisionTree import DTRegressor
+# DTRegressor = DTRegressor()
 
 class randomForest():
     def __init__(self):
@@ -36,7 +36,6 @@ class randomForest():
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state = 601)
         
         return  X_train, X_test, Y_train, Y_test
-    
     
     def testing(self, chooseBrand):
         self.dataset(self.userInput(chooseBrand))
@@ -73,8 +72,8 @@ class randomForest():
 
         X_train, X_test, Y_train, Y_test = self.dataset(self.userInput(chooseBrand))
         print("\n ***Training Tree Model***")
-        myTree = forestRegression(3, 93)  
-        myTree.fit(X_train, Y_train)
+        myForest = forestRegression(3, 93)  
+        myForest.fit(X_train, Y_train)
 
         inputPred.append((self.modelEncoder.transform([model]))[0])
         inputPred.append(int(year))
@@ -89,7 +88,7 @@ class randomForest():
         import time
         print("\n ***Predicting***")
         start = time.time()
-        y_pred = myTree.predict([inputPred])
+        y_pred = myForest.predict([inputPred])
         # {0:.2f}'.format()
         print("\n Predicted price for your car is: £", y_pred[0])
 
@@ -101,10 +100,30 @@ class randomForest():
 
 class forestRegression():
 
-    def __init__(self, numTrees = 25, minSample = 3, maxDepth = 93):
+    def __init__(self, numTrees = 3, minSample = 3, maxDepth = 93):
         self.numTrees = numTrees
         self.minSamples = minSample
         self.maxDepth = maxDepth
-        self.decisionTree= []
+        self.decisionTree = []
         
     
+    def fit(self, X, y):
+        if len(self.decisionTree) > 0:
+            self.decisionTree= []
+            
+        num_built = 0
+        while num_built < self.numTrees:
+            clf = DTRegressor(3, 93)
+            _X, _y = self._sample(X, y)
+            # print("\nX: ", _X)
+            # print("\ny: ", _y)
+            print("\nOVER HERE 1\n")
+            clf.fit(_X, _y)
+            print("OVER HERE 2", clf)
+            self.decisionTree.append(clf)
+            num_built += 1
+    
+    
+
+test = randomForest()
+test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
