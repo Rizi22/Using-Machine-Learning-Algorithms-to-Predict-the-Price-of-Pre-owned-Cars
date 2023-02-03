@@ -120,3 +120,6 @@ Term 2:
                 - testing bagging technique 
 
 01/02/2023: - Created a fit method for the Random Forest algorithm  
+
+03/02/2023: - Created a predict method for the Random Forest algorithm
+            - Completed first draft of the Random Forest algorithm - it prints a different price each time
