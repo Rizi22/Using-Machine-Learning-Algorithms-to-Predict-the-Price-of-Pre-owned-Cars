@@ -72,7 +72,7 @@ class randomForest():
 
         X_train, X_test, Y_train, Y_test = self.dataset(self.userInput(chooseBrand))
         print("\n ***Training Tree Model***")
-        myForest = forestRegression(3, 93)  
+        myForest = forestRegression()  
         myForest.fit(X_train, Y_train)
 
         inputPred.append((self.modelEncoder.transform([model]))[0])
@@ -100,7 +100,7 @@ class randomForest():
 
 class forestRegression():
 
-    def __init__(self, numTrees = 3, minSample = 3, maxDepth = 93):
+    def __init__(self, numTrees = 14, minSample = 5, maxDepth = 5):
         self.numTrees = numTrees
         self.minSamples = minSample
         self.maxDepth = maxDepth
@@ -109,7 +109,8 @@ class forestRegression():
     @staticmethod
     def _sample(X, y):
         n_rows, n_cols = X.shape
-        samples = np.random.choice(a = n_rows, size = n_rows, replace = True)
+        samples = np.random.RandomState(601).choice(a = n_rows, size = n_rows, replace = True)
+        # samples =rnd.choice(a = n_rows, size = n_rows, replace = True)
         return X[samples], y[samples]
         
     def fit(self, X, y):
@@ -118,16 +119,40 @@ class forestRegression():
             
         num_built = 0
         while num_built < self.numTrees:
-            clf = DTRegressor(3, 1) ##try 3, then 1
-            _X, _y = self._sample(X, y)
-            clf.fit(_X, _y)
-            self.decisionTree.append(clf)
-            num_built += 1
+            print("NUMBER BUILT: ", num_built)
+            try:
+                clf = DTRegressor(minSamples = self.minSamples, maxDepth = self.maxDepth) ##try 3, then 1
+                _X, _y = self._sample(X, y)
+                clf.fit(_X, _y)
+                self.decisionTree.append(clf)
+                num_built += 1
+            except Exception as e:
+                continue
+
+
+
+        # for i in range(self.numTrees):
+        #     # Randomly sample the data for each tree
+        #     sampleIndices = np.random.choice(X.shape[0], size = X.shape[0], replace = True)
+        #     X_sample = X[sampleIndices,:]
+        #     Y_sample = y[sampleIndices]
+            
+        #     # Fit a decision tree to the sample data
+        #     treeModel = DTRegressor(minSamples = self.minSamples, maxDepth = self.maxDepth)
+        #     treeModel.fit(X_sample, Y_sample)
+        #     self.decisionTree.append(treeModel)
     
     def predict(self, X):
         y = []
         for tree in self.decisionTree:
             y.append(tree.predict(X))
+
+
+        # Y_pred = np.zeros((X.shape[0], 1))
+        # for treeModel in self.treeModels:
+        #     Y_pred += treeModel.predict(X)
+        # Y_pred /= self.numTrees
+        # return Y_pred
 
         # print("\nBEFORE:", y)
         # y = np.swapaxes(a=y, axis1=0, axis2=1)
@@ -135,7 +160,7 @@ class forestRegression():
         
         # predictions = []
         # for preds in y:
-        #     counter = Counter(X)
+        #     counter = Counter(pred)
         #     test.append(X)
         #     predictions.append(counter.most_common(1)[0][0])
         # return predictions
@@ -145,6 +170,6 @@ class forestRegression():
 # print("TEST1")
 test = randomForest()
 # print("TEST2")
-test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
-# test.UIInput("BMW","5 Series","2019","Semi-Auto","4405","Petrol","145","48.7","2.0")
+# test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
+test.UIInput("BMW","5 Series","2019","Semi-Auto","4405","Petrol","145","48.7","2.0")
 # print("TEST3")

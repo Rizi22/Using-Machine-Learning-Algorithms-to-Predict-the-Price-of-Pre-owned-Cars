@@ -123,3 +123,10 @@ Term 2:
 
 03/02/2023: - Created a predict method for the Random Forest algorithm
             - Completed first draft of the Random Forest algorithm - it prints a different price each time
+
+04/02/2023: - GridSearchCV performed on Random Forest algorithm
+            - Further testing to solve problem with Random Forest algorithm, where the max depth can't be increased above 5
+            - Re-implemented the entropy method into the Decision tree algorithm to test whether it improves accuracy
+
+05/02/2023: - Removed entropy method from Decision Tree algorithm
+            - Found and imple optimal parameters for Random Forest algorithm - still faced problems where the max depth can't be increased above 5

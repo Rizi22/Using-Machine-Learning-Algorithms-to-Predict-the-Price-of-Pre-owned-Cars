@@ -173,7 +173,17 @@ class DTRegressor():
    
         
     def treeBuild(self, trainingSet, currentDepth = 0):
-        
+
+        # X, Y = trainingSet[:,:-1], trainingSet[:,-1]
+        # num_samples, num_features = np.shape(X)
+        # # print("\nsamples:", num_samples)
+        # # print("depth: ", currentDepth)
+        # bestSplitNode = {}
+        # # split until stopping conditions are met
+        # if num_samples>=self.minSamples and currentDepth<=self.maxDepth:
+        #     # find the best split
+        #     bestSplitNode = self.bestSplit(trainingSet, X) #, num_samples, num_features
+
 #       #Split training into features and labels
         X = trainingSet[:,:-1] # everything but the last value
         Y = []
@@ -184,7 +194,8 @@ class DTRegressor():
         if X.shape[0] >= self.minSamples and currentDepth <= self.maxDepth:
 #             bestSplit = self.bestSplit(trainingSet, samplesNumb, featuresNumb)
             bestSplitNode = self.bestSplit(trainingSet, X)
-            
+
+            # print("bestSplitNode: ", bestSplitNode["gain"])
             if bestSplitNode["gain"] > 0:
                 leftTree = self.treeBuild(bestSplitNode["leftSide"], currentDepth + 1)
                 rightTree = self.treeBuild(bestSplitNode["rightSide"], currentDepth + 1)
