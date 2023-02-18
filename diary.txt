@@ -129,4 +129,12 @@ Term 2:
             - Re-implemented the entropy method into the Decision tree algorithm to test whether it improves accuracy
 
 05/02/2023: - Removed entropy method from Decision Tree algorithm
-            - Found and imple optimal parameters for Random Forest algorithm - still faced problems where the max depth can't be increased above 5
+            - Found optimal parameters for Random Forest algorithm - still faced problems where the max depth can't be increased above 5
+
+16/02/2023: - Changed range of suitable parameters to limit the max depth to 6 - due to unknown error
+            - change range of Decision trees parameters to the same range of the random forest parameters - to keep controlled varriables similar
+
+17/02/2023: - Solved problem with random forest algorithm - the max depth can now be increased above 5
+            - Created a method to evaluate the accuracy of the Random Forest algorithm
+            - Fixed a problem with outputting the predicted price of the Random Forest algorithm - where only the output from one tree was Used
+            - Removed random state from the sample method - as it was causing the same sample to be used each time

@@ -90,7 +90,7 @@ class randomForest():
         start = time.time()
         y_pred = myForest.predict([inputPred])
         # {0:.2f}'.format()
-        print("\n Predicted price for your car is: £", y_pred)
+        print("\n Predicted price for your car in randomForestttt is: £", y_pred)
 
         print("\n ***Predicted in", time.time() - start,"seconds***")
 
@@ -100,7 +100,7 @@ class randomForest():
 
 class forestRegression():
 
-    def __init__(self, numTrees = 14, minSample = 5, maxDepth = 5):
+    def __init__(self, numTrees = 3, minSample = 23, maxDepth = 23): #numTrees = 23, minSample = 3, maxDepth = 5
         self.numTrees = numTrees
         self.minSamples = minSample
         self.maxDepth = maxDepth
@@ -109,8 +109,9 @@ class forestRegression():
     @staticmethod
     def _sample(X, y):
         n_rows, n_cols = X.shape
-        samples = np.random.RandomState(601).choice(a = n_rows, size = n_rows, replace = True)
+        samples = np.random.choice(a = n_rows, size = n_rows, replace = True) #.RandomState(601)
         # samples =rnd.choice(a = n_rows, size = n_rows, replace = True)
+        print("SAMPLES: ", samples)
         return X[samples], y[samples]
         
     def fit(self, X, y):
@@ -119,7 +120,7 @@ class forestRegression():
             
         num_built = 0
         while num_built < self.numTrees:
-            print("NUMBER BUILT: ", num_built)
+            print("\n\n\nNUMBER BUILT: ", num_built)
             try:
                 clf = DTRegressor(minSamples = self.minSamples, maxDepth = self.maxDepth) ##try 3, then 1
                 _X, _y = self._sample(X, y)
@@ -127,8 +128,9 @@ class forestRegression():
                 self.decisionTree.append(clf)
                 num_built += 1
             except Exception as e:
+                print("ERRORR: ", e)
                 continue
-
+        print("\nNUMB BULIT:", num_built)
 
 
         # for i in range(self.numTrees):
@@ -142,34 +144,27 @@ class forestRegression():
         #     treeModel.fit(X_sample, Y_sample)
         #     self.decisionTree.append(treeModel)
     
+    # def predict(self, X):
+    #     y = []
+    #     for tree in self.decisionTree:
+    #         y.append(tree.predict(X))
+    
+    #     return np.mean(y)
+    
     def predict(self, X):
         y = []
         for tree in self.decisionTree:
             y.append(tree.predict(X))
-
-
-        # Y_pred = np.zeros((X.shape[0], 1))
-        # for treeModel in self.treeModels:
-        #     Y_pred += treeModel.predict(X)
-        # Y_pred /= self.numTrees
-        # return Y_pred
-
-        # print("\nBEFORE:", y)
-        # y = np.swapaxes(a=y, axis1=0, axis2=1)
-        # print("\nAFTER:", y)
-        
-        # predictions = []
-        # for preds in y:
-        #     counter = Counter(pred)
-        #     test.append(X)
-        #     predictions.append(counter.most_common(1)[0][0])
-        # return predictions
-        # print("HERE: ", np.mean(y))
-        return np.mean(y)
+        y = np.swapaxes(a=y, axis1=0, axis2=1)
+        predictions = []
+        for preds in y:
+            predictions.append(np.mean(preds))
+        print("PREDICTIONS: ", y)
+        return predictions
 
 # print("TEST1")
 test = randomForest()
 # print("TEST2")
-# test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
-test.UIInput("BMW","5 Series","2019","Semi-Auto","4405","Petrol","145","48.7","2.0")
+test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
+# test.UIInput("BMW","5 Series","2019","Semi-Auto","4405","Petrol","145","48.7","2.0")
 # print("TEST3")

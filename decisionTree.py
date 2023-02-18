@@ -111,7 +111,7 @@ class Node():
         self.leaf = leaf 
 
 class DTRegressor():
-    def __init__(self, minSamples, maxDepth):
+    def __init__(self, minSamples, maxDepth): #ADDED NONE
         self.root = None
         self.minSamples = minSamples
         self.maxDepth = maxDepth
@@ -166,6 +166,7 @@ class DTRegressor():
                         bestSplitt["limit"] = j
                         bestSplitt["leftSide"] = leftSide
                         bestSplitt["rightSide"] = rightSide
+                        # print("current gain: ", currentGain)
                         bestSplitt["gain"] = currentGain
                         biggestGain = currentGain
                 
@@ -191,20 +192,31 @@ class DTRegressor():
             Y.append(trainingSet[i, -1])# only the last value
         
         #iterates until this condition is met
+        # print("X.shape[0]: ", X.shape[0])
+        # print("self.minSamples: ", self.minSamples)
+        # print("currentDepth: ", currentDepth)
+        # print("self.maxDepth: ", self.maxDepth)
         if X.shape[0] >= self.minSamples and currentDepth <= self.maxDepth:
 #             bestSplit = self.bestSplit(trainingSet, samplesNumb, featuresNumb)
             bestSplitNode = self.bestSplit(trainingSet, X)
 
-            # print("bestSplitNode: ", bestSplitNode["gain"])
-            if bestSplitNode["gain"] > 0:
-                leftTree = self.treeBuild(bestSplitNode["leftSide"], currentDepth + 1)
-                rightTree = self.treeBuild(bestSplitNode["rightSide"], currentDepth + 1)
-                node = Node(bestSplitNode["feature"], bestSplitNode["limit"], leftTree, rightTree, bestSplitNode["gain"])
+            # print("bestSplitNode: ") #, bestSplitNode["gain"]
+            # print(bestSplitNode)
+            try:
+                if bestSplitNode["gain"] > 0:
+                    leftTree = self.treeBuild(bestSplitNode["leftSide"], currentDepth + 1)
+                    rightTree = self.treeBuild(bestSplitNode["rightSide"], currentDepth + 1)
+                    node = Node(bestSplitNode["feature"], bestSplitNode["limit"], leftTree, rightTree, bestSplitNode["gain"])
+                    
+                    return node
+            except Exception as e:
+                print("diffff errorrrr: ", e)
                 
-                return node
-        
+        print("NOT GREATE THAN 0")
         leafValue = np.mean(Y) #calculates mean of leaf nodes
+        # print("LEAF VALUE: ", leafValue)
         val = Node(leaf = leafValue)
+        # print("VAL: ", val)
         return val
     
     def predictionLoop(self, testRow, root):
@@ -228,7 +240,10 @@ class DTRegressor():
         
     def fit(self, X, Y):
         trainingSet = np.concatenate((X, Y), axis=1) #Joins training data back together
+        print("STARTED")
         self.root = self.treeBuild(trainingSet)
+        print("ENDED????", self.root)
 
 # test = decisionTree()
 # test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
+# test.UIInput("BMW","5 Series","2019","Semi-Auto","4405","Petrol","145","48.7","2.0")
