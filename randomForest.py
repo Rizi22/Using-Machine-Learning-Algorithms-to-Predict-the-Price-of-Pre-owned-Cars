@@ -100,7 +100,7 @@ class randomForest():
 
 class forestRegression():
 
-    def __init__(self, numTrees = 3, minSample = 23, maxDepth = 23): #numTrees = 23, minSample = 3, maxDepth = 5
+    def __init__(self, numTrees = 31, minSample = 6, maxDepth = 90): #numTrees = 23, minSample = 3, maxDepth = 5
         self.numTrees = numTrees
         self.minSamples = minSample
         self.maxDepth = maxDepth
@@ -111,7 +111,7 @@ class forestRegression():
         n_rows, n_cols = X.shape
         samples = np.random.choice(a = n_rows, size = n_rows, replace = True) #.RandomState(601)
         # samples =rnd.choice(a = n_rows, size = n_rows, replace = True)
-        print("SAMPLES: ", samples)
+        # print("SAMPLES: ", samples)
         return X[samples], y[samples]
         
     def fit(self, X, y):
@@ -120,17 +120,18 @@ class forestRegression():
             
         num_built = 0
         while num_built < self.numTrees:
-            print("\n\n\nNUMBER BUILT: ", num_built)
+            # print("\n\n\nNUMBER BUILT: ", num_built)
             try:
                 clf = DTRegressor(minSamples = self.minSamples, maxDepth = self.maxDepth) ##try 3, then 1
                 _X, _y = self._sample(X, y)
                 clf.fit(_X, _y)
                 self.decisionTree.append(clf)
                 num_built += 1
+                print("\nNUMB BUILT:", num_built)
             except Exception as e:
                 print("ERRORR: ", e)
                 continue
-        print("\nNUMB BULIT:", num_built)
+        
 
 
         # for i in range(self.numTrees):
@@ -159,7 +160,7 @@ class forestRegression():
         predictions = []
         for preds in y:
             predictions.append(np.mean(preds))
-        print("PREDICTIONS: ", y)
+        # print("PREDICTIONS: ", y)
         return predictions
 
 # print("TEST1")

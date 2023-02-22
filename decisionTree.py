@@ -212,7 +212,7 @@ class DTRegressor():
             except Exception as e:
                 print("diffff errorrrr: ", e)
                 
-        print("NOT GREATE THAN 0")
+        # print("NOT GREATE THAN 0")
         leafValue = np.mean(Y) #calculates mean of leaf nodes
         # print("LEAF VALUE: ", leafValue)
         val = Node(leaf = leafValue)
@@ -240,9 +240,9 @@ class DTRegressor():
         
     def fit(self, X, Y):
         trainingSet = np.concatenate((X, Y), axis=1) #Joins training data back together
-        print("STARTED")
+        # print("STARTED")
         self.root = self.treeBuild(trainingSet)
-        print("ENDED????", self.root)
+        # print("ENDED????", self.root)
 
 # test = decisionTree()
 # test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
