@@ -138,3 +138,8 @@ Term 2:
             - Created a method to evaluate the accuracy of the Random Forest algorithm
             - Fixed a problem with outputting the predicted price of the Random Forest algorithm - where only the output from one tree was Used
             - Removed random state from the sample method - as it was causing the same sample to be used each time
+
+22/02/2023: - Worked on optimising the random forest algorithm
+            - Created a method to calculate the RMSE of the Random Forest algorithm
+
+05/03/2023: - Wrote up random forest on the final report
