@@ -143,3 +143,5 @@ Term 2:
             - Created a method to calculate the RMSE of the Random Forest algorithm
 
 05/03/2023: - Wrote up random forest on the final report
+
+06/03/2023: - Solved issue and improved Random Forest code accuracy, by using Sci Kit Learn's resample method instead of my own resample method.

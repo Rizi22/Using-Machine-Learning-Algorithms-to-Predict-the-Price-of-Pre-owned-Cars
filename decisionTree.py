@@ -202,15 +202,15 @@ class DTRegressor():
 
             # print("bestSplitNode: ") #, bestSplitNode["gain"]
             # print(bestSplitNode)
-            try:
-                if bestSplitNode["gain"] > 0:
-                    leftTree = self.treeBuild(bestSplitNode["leftSide"], currentDepth + 1)
-                    rightTree = self.treeBuild(bestSplitNode["rightSide"], currentDepth + 1)
-                    node = Node(bestSplitNode["feature"], bestSplitNode["limit"], leftTree, rightTree, bestSplitNode["gain"])
-                    
-                    return node
-            except Exception as e:
-                print("diffff errorrrr: ", e)
+            # try:
+            if "gain" in bestSplitNode and bestSplitNode["gain"] > 0:
+                leftTree = self.treeBuild(bestSplitNode["leftSide"], currentDepth + 1)
+                rightTree = self.treeBuild(bestSplitNode["rightSide"], currentDepth + 1)
+                node = Node(bestSplitNode["feature"], bestSplitNode["limit"], leftTree, rightTree, bestSplitNode["gain"])
+                
+                return node
+            # except Exception as e:
+            #     print("diffff errorrrr: ", e)
                 
         # print("NOT GREATE THAN 0")
         leafValue = np.mean(Y) #calculates mean of leaf nodes
