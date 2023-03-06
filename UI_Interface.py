@@ -7,6 +7,8 @@ from NN import NN
 NN = NN()
 from decisionTree import decisionTree
 decisionTree= decisionTree()
+from randomForest import randomForest
+randomForest = randomForest()
 
 def path(relative_path):
     try:
@@ -39,6 +41,12 @@ class mainMenuUI(QDialog):
                 Input_UI.setWindowTitle('DT Pre-Owned Car Price Predictor')
                 Input_UI.algorithm = "DT"
                 widget.setCurrentIndex(1)
+        
+        elif (self.RFButton.isChecked()):
+                Input_UI.label1.setText("Random Forest Car Price Predictor")
+                Input_UI.setWindowTitle('RF Pre-Owned Car Price Predictor')
+                Input_UI.algorithm = "RF"
+                widget.setCurrentIndex(1)
             
 
 class InputUI(QDialog):
@@ -67,6 +75,10 @@ class InputUI(QDialog):
                self.taxBox.text(), self.mpgBox.text(), self.engineBox.text())
         elif self.algorithm == "DT":
             prediction = decisionTree.UIInput(self.brandCombo.currentText(), self.modelCombo.currentText(), self.yearBox.text(), 
+               self.transmissionCombo.currentText(), self.mileageBox.text(), self.fuelCombo.currentText(), 
+               self.taxBox.text(), self.mpgBox.text(), self.engineBox.text())
+        elif self.algorithm == "RF":
+            prediction = randomForest.UIInput(self.brandCombo.currentText(), self.modelCombo.currentText(), self.yearBox.text(), 
                self.transmissionCombo.currentText(), self.mileageBox.text(), self.fuelCombo.currentText(), 
                self.taxBox.text(), self.mpgBox.text(), self.engineBox.text())
         
