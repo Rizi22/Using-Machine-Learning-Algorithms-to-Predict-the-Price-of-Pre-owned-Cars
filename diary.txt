@@ -145,3 +145,14 @@ Term 2:
 05/03/2023: - Wrote up random forest on the final report
 
 06/03/2023: - Solved issue and improved Random Forest code accuracy, by changing random state value to None.
+
+07/03/2023: - Created more data visualisations
+            - Begun working on and completed first draft of Linear Regrrssion algorithm
+
+08/03/2023: - Begun working in Suport Vector Machine algorithm
+
+12/03/2023: - Gotten rid out outliers in dataset
+            - Created more data visualisations - of outliers
+
+13/03/2023: - Added function to remove outliers in all algorithms
+            - Begun write up on outliers
