@@ -156,3 +156,5 @@ Term 2:
 
 13/03/2023: - Added function to remove outliers in all algorithms
             - Begun write up on outliers
+            - Wrote up more on data visualisation
+            - Begun write up on User Interface
