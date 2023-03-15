@@ -158,3 +158,7 @@ Term 2:
             - Begun write up on outliers
             - Wrote up more on data visualisation
             - Begun write up on User Interface
+
+15/03/2023: - Compacted and cleaned the .py code for all algorithms
+                - Moved common functions to the UI_Interface.py file
+            - Cleaned the code on the jupyter notebook files
