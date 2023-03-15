@@ -7,6 +7,7 @@ from sklearn.preprocessing import MinMaxScaler
 from math import sqrt
 from sklearn.metrics import mean_squared_error 
 from sklearn.preprocessing import LabelEncoder
+import time
 
 class NN():
 
@@ -20,6 +21,18 @@ class NN():
 
         file = pd.read_csv(brand, quotechar='"', skipinitialspace=True)
 
+        for i in ['year']:
+            q75,q25 = np.percentile(file.loc[:,i],[75,25])
+            IQR = q75-q25
+        
+            maxQ = q75+(1.5*IQR)
+            minQ = q25-(1.5*IQR)
+        
+            file.loc[file[i] < minQ, i] = np.nan
+            file.loc[file[i] > maxQ, i] = np.nan
+
+        file = file.dropna(axis = 0)
+        
         self.modelEncoder.fit(file["model"])
         file["model"] = self.modelEncoder.transform(file["model"])
         
@@ -127,17 +140,14 @@ class NN():
         inputPred.append(int(tax))
         inputPred.append(float(mpg))
         inputPred.append(float(engineSize))
-        entries.append(inputPred)
         inputPred = self.scaler.transform([inputPred])
 
-        import time
         print("\n ***Predicting***")
-        start = time.time()
+        timer = time.time()
         y_pred = self.predict(X_train, inputPred, Y_train, 4)
-        # {0:.2f}'.format()
         print("\n Predicted price for your car is: £", y_pred[0])
 
-        print("\n ***Predicted in", time.time() - start,"seconds***")
+        print("\n ***Predicted in", time.time() - timer,"seconds***")
         return y_pred[0]
 
 # test = NN()

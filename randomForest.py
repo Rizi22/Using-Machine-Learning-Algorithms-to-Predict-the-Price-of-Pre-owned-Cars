@@ -163,9 +163,6 @@ class forestRegression():
         # print("PREDICTIONS: ", y)
         return predictions
 
-# print("TEST1")
-test = randomForest()
-# print("TEST2")
-test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
+# test = randomForest()
+# test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
 # test.UIInput("BMW","5 Series","2019","Semi-Auto","4405","Petrol","145","48.7","2.0")
-# print("TEST3")
