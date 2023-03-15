@@ -6,7 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import LabelEncoder
 
 from collections import Counter
-from decisionTree import DTRegressor
+from decisionTree import decisionTree
 # DTRegressor = DTRegressor()
 
 class randomForest():
@@ -120,9 +120,8 @@ class forestRegression():
             
         num_built = 0
         while num_built < self.numTrees:
-            # print("\n\n\nNUMBER BUILT: ", num_built)
             try:
-                clf = DTRegressor(minSamples = self.minSamples, maxDepth = self.maxDepth) ##try 3, then 1
+                clf = decisionTree(minSamples = self.minSamples, maxDepth = self.maxDepth) ##try 3, then 1
                 _X, _y = self._sample(X, y)
                 clf.fit(_X, _y)
                 self.decisionTree.append(clf)
@@ -133,25 +132,6 @@ class forestRegression():
                 continue
         
 
-
-        # for i in range(self.numTrees):
-        #     # Randomly sample the data for each tree
-        #     sampleIndices = np.random.choice(X.shape[0], size = X.shape[0], replace = True)
-        #     X_sample = X[sampleIndices,:]
-        #     Y_sample = y[sampleIndices]
-            
-        #     # Fit a decision tree to the sample data
-        #     treeModel = DTRegressor(minSamples = self.minSamples, maxDepth = self.maxDepth)
-        #     treeModel.fit(X_sample, Y_sample)
-        #     self.decisionTree.append(treeModel)
-    
-    # def predict(self, X):
-    #     y = []
-    #     for tree in self.decisionTree:
-    #         y.append(tree.predict(X))
-    
-    #     return np.mean(y)
-    
     def predict(self, X):
         y = []
         for tree in self.decisionTree:
@@ -160,9 +140,8 @@ class forestRegression():
         predictions = []
         for preds in y:
             predictions.append(np.mean(preds))
-        # print("PREDICTIONS: ", y)
         return predictions
 
-# test = randomForest()
-# test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
+test = randomForest()
+test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
 # test.UIInput("BMW","5 Series","2019","Semi-Auto","4405","Petrol","145","48.7","2.0")

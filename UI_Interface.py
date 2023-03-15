@@ -1,23 +1,20 @@
 import sys
 import os
-
-from sklearn.preprocessing import LabelEncoder
-import time
-from sklearn.model_selection import train_test_split
 import numpy as np
 import pandas as pd
+import time
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import MinMaxScaler
 
 from PyQt5.QtWidgets import QApplication, QWidget, QDialog
 from PyQt5 import uic, QtCore
 from PyQt5 import QtWidgets
-from NN import NN
-NN = NN()
 
-from decisionTree import DTRegressor
-
-
+from nearestNeighbour import nearestNeighbour
+from decisionTree import decisionTree
 from randomForest import randomForest
-randomForest = randomForest()
 
 def path(relative_path):
     try:
@@ -65,9 +62,11 @@ class InputUI(QDialog):
         uic.loadUi(path('UI_Files/InputUI.ui'), self)
         self.algorithm = ''
         self.label1.setAlignment(QtCore.Qt.AlignCenter)
+
         self.modelEncoder = LabelEncoder()
         self.transmissionEncoder = LabelEncoder()
         self.fuelTypeEncoder = LabelEncoder()
+        self.scaler = MinMaxScaler()
 
         self.brandCombo.addItems(["Audi", "BMW", "Ford", "Hyundai", "Mercedes", "Skoda", "Toyota", "Vauxhall", "Volkswagen"])
         self.transmissionCombo.addItems(["Manual", "Automatic", "Semi-Auto"])
@@ -77,83 +76,50 @@ class InputUI(QDialog):
         self.brandCombo.currentIndexChanged.connect(self.addModel)
         self.backButton.clicked.connect(self.backPage)
         self.button.clicked.connect(self.runUI)
-    
-    # def runUI(self):
-    #     prediction = 0
-    #     print (self.algorithm)
-    #     if self.algorithm == "KNN":
-    #         prediction = NN.UIInput(self.brandCombo.currentText(), self.modelCombo.currentText(), self.yearBox.text(), 
-    #            self.transmissionCombo.currentText(), self.mileageBox.text(), self.fuelCombo.currentText(), 
-    #            self.taxBox.text(), self.mpgBox.text(), self.engineBox.text())
-    #     elif self.algorithm == "DT":
-    #         prediction = decisionTree.UIInput(self.brandCombo.currentText(), self.modelCombo.currentText(), self.yearBox.text(), 
-    #            self.transmissionCombo.currentText(), self.mileageBox.text(), self.fuelCombo.currentText(), 
-    #            self.taxBox.text(), self.mpgBox.text(), self.engineBox.text())
-    #     elif self.algorithm == "RF":
-    #         prediction = randomForest.UIInput(self.brandCombo.currentText(), self.modelCombo.currentText(), self.yearBox.text(), 
-    #            self.transmissionCombo.currentText(), self.mileageBox.text(), self.fuelCombo.currentText(), 
-    #            self.taxBox.text(), self.mpgBox.text(), self.engineBox.text())
-        
-    #     pred.label_2.setText("£" + str(prediction))
-    #     widget.setCurrentIndex(2)
 
 
     def runUI(self):
 
-        brand = self.brandCombo.currentText()
-        model = self.modelCombo.currentText()
-        year = self.yearBox.text()
-        transmission = self.transmissionCombo.currentText()
-        mileage = self.mileageBox.text()
-        fuelType = self.fuelCombo.currentText()
-        tax = self.taxBox.text()
-        mpg = self.mpgBox.text()
-        engineSize = self.engineBox.text()
-
         inputPred = []
 
-        X_train, X_test, Y_train, Y_test = self.dataset(self.userInput(brand))
-            
-        print("\n ***Training Tree Model***")
-        timer = time.time()
+        X_train, X_test, Y_train, Y_test = self.loadDataset(self.chosenBrand(self.brandCombo.currentText()))   
         
-        inputPred.append((self.modelEncoder.transform([model]))[0])
-        inputPred.append(int(year))
-        inputPred.append((self.transmissionEncoder.transform([transmission]))[0])
-        inputPred.append(int(mileage))
-        inputPred.append((self.fuelTypeEncoder.transform([fuelType]))[0])
-        inputPred.append(int(tax))
-        inputPred.append(float(mpg))
-        inputPred.append(float(engineSize))
-
-
+        inputPred.append((self.modelEncoder.transform([self.modelCombo.currentText()]))[0])
+        inputPred.append(int(self.yearBox.text()))
+        inputPred.append((self.transmissionEncoder.transform([self.transmissionCombo.currentText()]))[0])
+        inputPred.append(int(self.mileageBox.text()))
+        inputPred.append((self.fuelTypeEncoder.transform([self.fuelCombo.currentText()]))[0])
+        inputPred.append(int(self.taxBox.text()))
+        inputPred.append(float(self.mpgBox.text()))
+        inputPred.append(float(self.engineBox.text()))
+        
         print("\n ***Predicting***")
+        timer = time.time()
 
         match self.algorithm:   
             case "KNN":
-                Y_pred = NN.predict(X_train, inputPred, Y_train, 4)
+                KNN = nearestNeighbour()
+                inputPred = self.scaler.transform([inputPred])
+                Y_pred = KNN.predict(X_train, inputPred, Y_train, 4)
             case "DT":
-                print("HEREEEE")
-                DT = DTRegressor(3, 93)
+                DT = decisionTree(3, 93)
                 DT.fit(X_train, Y_train)
                 Y_pred = DT.predict([inputPred])
             case "RF":
-                randomForest.fit(X_train, Y_train)
-                Y_pred = randomForest.predict([inputPred])
+                RF = randomForest(31, 6, 90)
+                RF.fit(X_train, Y_train)
+                Y_pred = RF.predict([inputPred])
 
-        print("\n Predicted price for your car is: £",round(Y_pred[0], 2))
+        print("\n Predicted price for your car is: £", round(Y_pred[0], 2))
         print("\n ***Predicted in", time.time() - timer,"seconds***")
 
         pred.label_2.setText("£" + str(Y_pred[0]))
         widget.setCurrentIndex(2)
 
-    def testing(self, chooseBrand):
-        self.dataset(self.userInput(chooseBrand))
-        return
 
-    def userInput(self, chooseBrand):
+    def chosenBrand(self, brand):
 
-        match chooseBrand:
+        match brand:
             case "Audi":
                 return "UKUsedCarDataSet/audi.csv"
             case "BMW":
@@ -176,7 +142,7 @@ class InputUI(QDialog):
                 print("Invalid input")
                 return
     
-    def dataset(self, brand):
+    def loadDataset(self, brand):
 
         file = pd.read_csv(brand, quotechar='"', skipinitialspace=True)
 
@@ -201,19 +167,19 @@ class InputUI(QDialog):
         self.fuelTypeEncoder.fit(file["fuelType"])
         file["fuelType"] = self.fuelTypeEncoder.transform(file["fuelType"])
 
-        file = file.head(5000)
+        file = file.head(1000)
 
         match self.algorithm:
-            case "DT":
+            case "DT" | "RF":
                 X = file.drop(['price'], axis = 1).to_numpy()
                 Y = file['price'].values.reshape(-1,1)
                 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state = 601)
                 return  X_train, X_test, Y_train, Y_test
-            case "RF":
-                X = file.drop(['price'], axis = 1).to_numpy()
-                Y = file['price'].values.reshape(-1,1)
-                X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state = 601)
-                return  X_train, X_test, Y_train, Y_test
+            # case "RF":
+            #     X = file.drop(['price'], axis = 1).to_numpy()
+            #     Y = file['price'].values.reshape(-1,1)
+            #     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state = 601)
+            #     return  X_train, X_test, Y_train, Y_test
             case "KNN":
                 X = file.drop(columns = ['price'])
                 Y = file.price
@@ -225,7 +191,7 @@ class InputUI(QDialog):
         
 
     def addModel(self):
-        self.testing(self.brandCombo.currentText())
+        self.loadDataset(self.chosenBrand(self.brandCombo.currentText()))
         self.modelCombo.clear()
         self.modelCombo.addItems(list(self.modelEncoder.classes_))
     
@@ -270,4 +236,4 @@ if __name__ == '__main__':
     try:
         sys.exit(app.exec_())
     except SystemExit:
-        print("Closinggg")
+        print("***Program Terminated***")

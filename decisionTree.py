@@ -115,8 +115,8 @@ class Node():
         self.gain = gain
         self.leaf = leaf 
 
-class DTRegressor():
-# class decisionTree():
+# class DTRegressor():
+class decisionTree():
     def __init__(self, minSamples, maxDepth):
         self.root = None
         self.minSamples = minSamples
