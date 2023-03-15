@@ -1,64 +1,10 @@
 import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-import seaborn as sns
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler
 from math import sqrt
-from sklearn.metrics import mean_squared_error 
-from sklearn.preprocessing import LabelEncoder
-import time
 
 class nearestNeighbour():
 
-    # def __init__(self):
-    #     self.modelEncoder = LabelEncoder()
-    #     self.transmissionEncoder = LabelEncoder()
-    #     self.fuelTypeEncoder = LabelEncoder()
-    #     self.scaler = MinMaxScaler()
-    
-    # def dataset(self, brand):
-
-    #     file = pd.read_csv(brand, quotechar='"', skipinitialspace=True)
-
-    #     for i in ['year']:
-    #         q75,q25 = np.percentile(file.loc[:,i],[75,25])
-    #         IQR = q75-q25
-        
-    #         maxQ = q75+(1.5*IQR)
-    #         minQ = q25-(1.5*IQR)
-        
-    #         file.loc[file[i] < minQ, i] = np.nan
-    #         file.loc[file[i] > maxQ, i] = np.nan
-
-    #     file = file.dropna(axis = 0)
-        
-    #     self.modelEncoder.fit(file["model"])
-    #     file["model"] = self.modelEncoder.transform(file["model"])
-        
-    #     self.transmissionEncoder.fit(file["transmission"])
-    #     file["transmission"] = self.transmissionEncoder.transform(file["transmission"])
-        
-    #     self.fuelTypeEncoder.fit(file["fuelType"])
-    #     file["fuelType"] = self.fuelTypeEncoder.transform(file["fuelType"])
-
-    #     file = file.head(1000) # Limits dataset size
-
-    #     X = file.drop(columns = ['price'])
-    #     Y = file.price
-        
-    #     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state = 601)
-        
-    #     self.scaler.fit(X_train)
-
-    #     X_train = self.scaler.transform(X_train)
-    #     X_test = self.scaler.transform(X_test)
-
-    #     return  X_train, X_test, Y_train, Y_test
-
     def eucDistance(self, variable1, variable2):
         distance = 0
-        # print("\nVARIABLE 2", variable2)
         for i in range(len(variable2)):
             distance += (variable1[i] - variable2[i])**2
         return np.sqrt(distance)
@@ -87,7 +33,6 @@ class nearestNeighbour():
         from statistics import mean 
         predictions = list()
         for i in range(len(test)):
-            print("\nTEST:::::::::: ",test[i])
             neighbour = self.kNN(train, test[i], yTrain, num_neighbors) #CHANGE
             labels = [] #Stores yTrain for each test variable
             for i in range (len(neighbour)):
@@ -98,59 +43,3 @@ class nearestNeighbour():
     def rmse(self, test, pred):
         MSE = np.square(np.subtract(test, pred)).mean()
         return sqrt(MSE)
-
-    # def userInput(self, chooseBrand):
-        
-    #     if chooseBrand == "Audi":
-    #         return "UKUsedCarDataSet/audi.csv"
-    #     elif chooseBrand == "BMW":
-    #         return "UKUsedCarDataSet/bmw.csv"
-    #     elif chooseBrand == "Ford":
-    #         return "UKUsedCarDataSet/ford.csv"
-    #     elif chooseBrand == "Hyundai":
-    #         return "UKUsedCarDataSet/hyundi.csv"
-    #     elif chooseBrand == "Mercedes":
-    #         return "UKUsedCarDataSet/merc.csv"
-    #     elif chooseBrand == "Skoda":
-    #         return "UKUsedCarDataSet/skoda.csv"
-    #     elif chooseBrand == "Toyota":
-    #         return "UKUsedCarDataSet/toyota.csv"
-    #     elif chooseBrand == "Vauxhall":
-    #         return "UKUsedCarDataSet/vauxhall.csv"
-    #     elif chooseBrand == "Volkswagen":
-    #         return "UKUsedCarDataSet/vw.csv"
-    #     else:
-    #         print("Invalid Car Brand")
-    #         return
-
-    # def testing(self, chooseBrand):
-    #     self.dataset(self.userInput(chooseBrand))
-    #     return
-        
-            
-    # def UIInput(self, chooseBrand, model, year, transmission, mileage, fuelType, tax, mpg, engineSize):
-    #     inputPred = []
-
-    #     X_train, X_test, Y_train, Y_test = self.dataset(self.userInput(chooseBrand))
-
-    #     inputPred.append((self.modelEncoder.transform([model]))[0])
-    #     inputPred.append(int(year))
-    #     inputPred.append((self.transmissionEncoder.transform([transmission]))[0])
-    #     inputPred.append(int(mileage))
-    #     inputPred.append((self.fuelTypeEncoder.transform([fuelType]))[0])
-    #     inputPred.append(int(tax))
-    #     inputPred.append(float(mpg))
-    #     inputPred.append(float(engineSize))
-    #     inputPred = self.scaler.transform([inputPred])
-
-    #     print("\n ***Predicting***")
-    #     timer = time.time()
-    #     y_pred = self.predict(X_train, inputPred, Y_train, 4)
-    #     print("\n Predicted price for your car is: £", y_pred[0])
-
-    #     print("\n ***Predicted in", time.time() - timer,"seconds***")
-    #     return y_pred[0]
-
-# test = nearestNeighbour()
-# test.UIInput("Audi","RS6","2016","Semi-Auto","49050","Petrol","325","29.4","4.0")
-# Audi,RS6,2016,Semi-Auto,49050,Petrol,325,29.4,4.0    Price = £44,985 Pred:£44717

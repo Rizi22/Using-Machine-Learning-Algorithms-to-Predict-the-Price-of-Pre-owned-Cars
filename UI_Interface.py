@@ -106,7 +106,7 @@ class InputUI(QDialog):
                 DT.fit(X_train, Y_train)
                 Y_pred = DT.predict([inputPred])
             case "RF":
-                RF = randomForest(31, 6, 90)
+                RF = randomForest()
                 RF.fit(X_train, Y_train)
                 Y_pred = RF.predict([inputPred])
 
