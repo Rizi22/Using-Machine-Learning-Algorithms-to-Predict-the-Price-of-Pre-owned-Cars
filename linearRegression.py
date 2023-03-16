@@ -2,11 +2,10 @@ import numpy as np
 
 class linearRegression() :
       
-    def __init__(self, learning_rate, iterations) :
+    def __init__(self, learning_rate = 0.01, iterations = 1000) :
         self.learning_rate = learning_rate
         self.iterations = iterations
-        
-              
+            
     def fit(self, X, Y) :
         self.sampleNumb, self.featuresNumb = X.shape 
         self.weight = np.zeros(self.featuresNumb)  
@@ -27,4 +26,4 @@ class linearRegression() :
         return self
       
     def predict(self, X) :
-        return X.dot(self.weight) + self.bias
+        return np.dot(X, self.weight) + self.bias
