@@ -15,6 +15,7 @@ from PyQt5 import QtWidgets
 from nearestNeighbour import nearestNeighbour
 from decisionTree import decisionTree
 from randomForest import randomForest
+from linearRegression import linearRegression
 
 def path(relative_path):
     try:
@@ -52,6 +53,11 @@ class mainMenuUI(QDialog):
                 Input_UI.label1.setText("Random Forest Car Price Predictor")
                 Input_UI.setWindowTitle('RF Pre-Owned Car Price Predictor')
                 Input_UI.algorithm = "RF"
+                widget.setCurrentIndex(1)
+        elif (self.LRButton.isChecked()):
+                Input_UI.label1.setText("Linear Regression Car Price Predictor")
+                Input_UI.setWindowTitle('LR Pre-Owned Car Price Predictor')
+                Input_UI.algorithm = "LR"
                 widget.setCurrentIndex(1)
             
 
@@ -109,11 +115,16 @@ class InputUI(QDialog):
                 RF = randomForest()
                 RF.fit(X_train, Y_train)
                 Y_pred = RF.predict([inputPred])
+            case "LR":
+                LR = linearRegression()
+                LR.fit(X_train, Y_train)
+                inputPred = self.scaler.transform([inputPred])
+                Y_pred = LR.predict(inputPred)
 
         print("\n Predicted price for your car is: £", round(Y_pred[0], 2))
         print("\n ***Predicted in", time.time() - timer,"seconds***")
 
-        pred.label_2.setText("£" + str(Y_pred[0]))
+        pred.label_2.setText("£" + str(round(Y_pred[0], 2)))
         widget.setCurrentIndex(2)
 
 
@@ -167,7 +178,7 @@ class InputUI(QDialog):
         self.fuelTypeEncoder.fit(file["fuelType"])
         file["fuelType"] = self.fuelTypeEncoder.transform(file["fuelType"])
 
-        file = file.head(1000)
+        file = file.head(5000)
 
         match self.algorithm:
             case "DT" | "RF":
@@ -175,12 +186,7 @@ class InputUI(QDialog):
                 Y = file['price'].values.reshape(-1,1)
                 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state = 601)
                 return  X_train, X_test, Y_train, Y_test
-            # case "RF":
-            #     X = file.drop(['price'], axis = 1).to_numpy()
-            #     Y = file['price'].values.reshape(-1,1)
-            #     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state = 601)
-            #     return  X_train, X_test, Y_train, Y_test
-            case "KNN":
+            case "KNN" | "LR":
                 X = file.drop(columns = ['price'])
                 Y = file.price
                 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state = 601)
