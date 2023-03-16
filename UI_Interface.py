@@ -37,6 +37,8 @@ class mainMenuUI(QDialog):
         self.pushButton.clicked.connect(self.goToPage)
     
     def goToPage(self):
+        # Input_UI.pred.clear()
+        # Input_UI.pred2.clear()
         if (self.KNNButton.isChecked()):
                 Input_UI.label1.setText("KNN Car Price Predictor")
                 Input_UI.setWindowTitle('KNN Pre-Owned Car Price Predictor')
@@ -54,6 +56,7 @@ class mainMenuUI(QDialog):
                 Input_UI.setWindowTitle('RF Pre-Owned Car Price Predictor')
                 Input_UI.algorithm = "RF"
                 widget.setCurrentIndex(1)
+        
         elif (self.LRButton.isChecked()):
                 Input_UI.label1.setText("Linear Regression Car Price Predictor")
                 Input_UI.setWindowTitle('LR Pre-Owned Car Price Predictor')
@@ -68,6 +71,8 @@ class InputUI(QDialog):
         uic.loadUi(path('UI_Files/InputUI.ui'), self)
         self.algorithm = ''
         self.label1.setAlignment(QtCore.Qt.AlignCenter)
+        self.pred.setAlignment(QtCore.Qt.AlignCenter)
+        self.pred2.setAlignment(QtCore.Qt.AlignCenter)
 
         self.modelEncoder = LabelEncoder()
         self.transmissionEncoder = LabelEncoder()
@@ -86,6 +91,10 @@ class InputUI(QDialog):
 
     def runUI(self):
 
+        self.pred.setText("Predicting...")
+        self.pred2.setText("Please wait...")
+        QApplication.processEvents()
+
         inputPred = []
 
         X_train, X_test, Y_train, Y_test = self.loadDataset(self.chosenBrand(self.brandCombo.currentText()))   
@@ -100,9 +109,15 @@ class InputUI(QDialog):
         inputPred.append(float(self.engineBox.text()))
         
         print("\n ***Predicting***")
+        
         timer = time.time()
 
         match self.algorithm:   
+            case "LR":
+                LR = linearRegression()
+                LR.fit(X_train, Y_train)
+                inputPred = self.scaler.transform([inputPred])
+                Y_pred = LR.predict(inputPred)
             case "KNN":
                 KNN = nearestNeighbour()
                 inputPred = self.scaler.transform([inputPred])
@@ -115,11 +130,6 @@ class InputUI(QDialog):
                 RF = randomForest()
                 RF.fit(X_train, Y_train)
                 Y_pred = RF.predict([inputPred])
-            case "LR":
-                LR = linearRegression()
-                LR.fit(X_train, Y_train)
-                inputPred = self.scaler.transform([inputPred])
-                Y_pred = LR.predict(inputPred)
 
         print("\n Predicted price for your car is: £", round(Y_pred[0], 2))
         print("\n ***Predicted in", time.time() - timer,"seconds***")
@@ -212,8 +222,21 @@ class predPage(QDialog):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
 
+        self.pushButton.clicked.connect(self.clearText)
         self.pushButton.clicked.connect(self.backPage)
+
+        self.startButton.clicked.connect(self.refreshPage)
         self.startButton.clicked.connect(self.homePage)
+
+
+    def refreshPage(self):
+        Input_UI.pred.clear()
+        Input_UI.pred2.clear()
+        Input_UI.yearBox.clear()
+
+    def clearText(self):
+        Input_UI.pred.clear()
+        Input_UI.pred2.clear()
     
     def backPage(self):
         widget.setCurrentIndex(widget.currentIndex() - 1)
