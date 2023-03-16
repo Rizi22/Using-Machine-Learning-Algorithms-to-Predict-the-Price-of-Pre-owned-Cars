@@ -162,3 +162,6 @@ Term 2:
 15/03/2023: - Compacted and cleaned the .py code for all algorithms
                 - Moved common functions to the UI_Interface.py file
             - Cleaned the code on the jupyter notebook files
+            - Organised Folders
+            - Created a .py file for Linear Regression algorithm
+            
