@@ -164,4 +164,6 @@ Term 2:
             - Cleaned the code on the jupyter notebook files
             - Organised Folders
             - Created a .py file for Linear Regression algorithm
+
+16/03/2023: - Improved and completed UI files.
             

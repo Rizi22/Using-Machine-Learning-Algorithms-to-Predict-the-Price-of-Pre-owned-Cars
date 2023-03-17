@@ -233,6 +233,8 @@ class predPage(QDialog):
         Input_UI.pred.clear()
         Input_UI.pred2.clear()
         Input_UI.yearBox.clear()
+        for i in reversed(range(layout.count())): 
+            layout.itemAt(i).widget().setParent(None)
 
     def clearText(self):
         Input_UI.pred.clear()
