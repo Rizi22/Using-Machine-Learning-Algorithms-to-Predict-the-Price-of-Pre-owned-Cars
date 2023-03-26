@@ -165,5 +165,8 @@ Term 2:
             - Organised Folders
             - Created a .py file for Linear Regression algorithm
 
-16/03/2023: - Improved and completed UI files.
-            
+16/03/2023: - Improved and completed UI files
+            - Completed Linear Regression .py files
+            - Added Linear Regression algorithm to the UI
+
+18/03/2023: 
