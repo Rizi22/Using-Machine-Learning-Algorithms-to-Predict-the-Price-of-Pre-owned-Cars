@@ -169,4 +169,9 @@ Term 2:
             - Completed Linear Regression .py files
             - Added Linear Regression algorithm to the UI
 
-18/03/2023: 
+18/03/2023: - Attempted to combine all the algorithms into one
+
+25/03/2023: - Started write up on Linear Regression algorithm
+            - Completely re-coded Linear Regression algorithm
+
+26/03/2023: - Completed write up on Linear Regression
