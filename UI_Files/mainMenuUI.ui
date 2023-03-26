@@ -131,6 +131,23 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
      <string>Linear Regression</string>
     </property>
    </widget>
+   <widget class="QRadioButton" name="combinedButton">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>440</y>
+      <width>221</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Combined Algorithms</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
