@@ -10,7 +10,7 @@ class randomForest():
         self.decisionTree = []
         self.random_state = random_state
         
-    def _sample(self, X, y, state):
+    def bootstrapSample(self, X, y, state):
         sampleNumb, featuresNumb = X.shape
         samples = np.random.RandomState(state).choice(a = sampleNumb, size = sampleNumb, replace = True)
         return X[samples], y[samples]
@@ -24,7 +24,7 @@ class randomForest():
             
             try:
                 DT = decisionTree(minSamples = self.minSamples, maxDepth = self.maxDepth)
-                _X, _y = self._sample(X, y, self.random_state + i)
+                _X, _y = self.bootstrapSample(X, y, self.random_state + i)
                 DT.fit(_X, _y)
                 self.decisionTree.append(DT)
                 num_built += 1
