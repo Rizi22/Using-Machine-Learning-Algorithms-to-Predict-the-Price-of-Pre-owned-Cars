@@ -175,3 +175,8 @@ Term 2:
             - Completely re-coded Linear Regression algorithm
 
 26/03/2023: - Completed write up on Linear Regression
+
+27/03/2023: - Completed write up on Random Forests
+            - Changed write up on KNN 
+
+28/03/2023: - Completed write up on user interface
