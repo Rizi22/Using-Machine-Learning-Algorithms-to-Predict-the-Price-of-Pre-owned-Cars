@@ -180,4 +180,6 @@ Term 2:
             - Changed write up on KNN 
 
 28/03/2023: - Completed write up on user interface
+            - Completed write up on professional issues
             - Completed write up on Engineering Tools
+ 

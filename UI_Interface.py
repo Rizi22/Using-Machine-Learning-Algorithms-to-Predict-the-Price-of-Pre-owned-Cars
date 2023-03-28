@@ -192,7 +192,7 @@ class InputUI(QDialog):
             case "Vauxhall":
                 return "UKUsedCarDataSet/vauxhall.csv"
             case "Volkswagen":
-                return "UKUsedCarDataSet/volkswagen.csv"
+                return "UKUsedCarDataSet/vw.csv"
             case _:
                 print("Invalid input")
                 return
