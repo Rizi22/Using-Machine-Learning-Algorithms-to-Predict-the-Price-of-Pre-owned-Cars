@@ -17,5 +17,5 @@ pre-owned cars.
 Dataset: https://www.kaggle.com/datasets/adityadesai13/used-car-dataset-ford-and-mercedes
 
 - There is a folder called 'Jupyter Notebook' that contains only ipynb files, to provide a clear and well structed demonstartion of the code.
-- There is also an executable file called 'ML Pre-Owned Car Predictor.exe' that you can run to use the GUI.  
-- Otherwise there is a file called UI_interface.
+- There is also a file called UI_interface 'UI_interface' that you can run to use the GUI.  
+- Link to download executable file https://drive.google.com/file/d/147aURwIJ03iMe6sR3no58spdlLIN_71Q/view?usp=sharing 
