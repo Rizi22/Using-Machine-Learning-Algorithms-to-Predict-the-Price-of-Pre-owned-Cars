@@ -183,5 +183,14 @@ Term 2:
             - Completed write up on professional issues
             - Completed write up on Engineering Tools
  
- 29/03/2023: - Completed Hold-out validation analysis on all algorithms
+29/03/2023: - Completed Hold-out validation analysis on all algorithms
                 - KNN took extremely long to run. I had to run on multiple devices
+            - Completed write up on hold-out validation
+
+30/03/2023: - Completed K-Fold validation analysis on all algorithms
+            - Got rid of combined algorithm file
+            - Completed Analsis write up
+            - Completed evaluation
+            - Completed conclusion
+            - Commented all code
+            - Completed final report
