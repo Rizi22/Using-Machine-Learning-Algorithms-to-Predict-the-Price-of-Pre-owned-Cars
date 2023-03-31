@@ -29,7 +29,7 @@ class mainMenuUI(QDialog):
     
     def __init__(self):
         super().__init__()
-        uic.loadUi(path('UI_Files/mainMenuUI.ui'), self)
+        uic.loadUi(path('UI_Files/mainMenuUI.ui'), self) # Loading the main menu UI
         
         self.setWindowTitle('Pre-Owned Car Price Predictor')
         self.label.setAlignment(QtCore.Qt.AlignCenter)
@@ -37,13 +37,12 @@ class mainMenuUI(QDialog):
         self.pushButton.clicked.connect(self.goToPage)
     
     def goToPage(self):
-        # Input_UI.pred.clear()
-        # Input_UI.pred2.clear()
+        #if KNN radio button is selected, change to InputUI window with KNN algorithm selected
         if (self.KNNButton.isChecked()):
                 Input_UI.label1.setText("KNN Car Price Predictor")
                 Input_UI.setWindowTitle('KNN Pre-Owned Car Price Predictor')
                 Input_UI.algorithm = "KNN"
-                widget.setCurrentIndex(1)
+                widget.setCurrentIndex(1) # Setting the active window to InputUI
 
         elif (self.DTButton.isChecked()):
                 Input_UI.label1.setText("Decision Tree Car Price Predictor")
@@ -62,33 +61,31 @@ class mainMenuUI(QDialog):
                 Input_UI.setWindowTitle('LR Pre-Owned Car Price Predictor')
                 Input_UI.algorithm = "LR"
                 widget.setCurrentIndex(1)
-        
-        elif (self.combinedButton.isChecked()):
-                Input_UI.label1.setText("Combined ML Car Price Predictor")
-                Input_UI.setWindowTitle('Combined ML Pre-Owned Car Price Predictor')
-                Input_UI.algorithm = "combined"
-                widget.setCurrentIndex(1)
             
-
+# User interface for inputting car data and getting predicted price
 class InputUI(QDialog):
 
     def __init__(self):
         super().__init__()
-        uic.loadUi(path('UI_Files/InputUI.ui'), self)
+        uic.loadUi(path('UI_Files/InputUI.ui'), self) # Loading the InputUI window UI
         self.algorithm = ''
+        # Aligning labels and setting the choices for the drop-down menus
         self.label1.setAlignment(QtCore.Qt.AlignCenter)
         self.pred.setAlignment(QtCore.Qt.AlignCenter)
         self.pred2.setAlignment(QtCore.Qt.AlignCenter)
 
+        # Initializing label encoders and scaler
         self.modelEncoder = LabelEncoder()
         self.transmissionEncoder = LabelEncoder()
         self.fuelTypeEncoder = LabelEncoder()
         self.scaler = MinMaxScaler()
 
+        # Adding choices to drop-down menus
         self.brandCombo.addItems(["Audi", "BMW", "Ford", "Hyundai", "Mercedes", "Skoda", "Toyota", "Vauxhall", "Volkswagen"])
         self.transmissionCombo.addItems(["Manual", "Automatic", "Semi-Auto"])
         self.fuelCombo.addItems(["Petrol", "Diesel", "Hybrid"])
         
+        # Calling function to populate models based on brand selection
         self.addModel()
         self.brandCombo.currentIndexChanged.connect(self.addModel)
         self.backButton.clicked.connect(self.backPage)
@@ -96,7 +93,7 @@ class InputUI(QDialog):
 
 
     def runUI(self):
-
+        # Updating UI to display "Predicting" message
         self.pred.setText("Predicting...")
         self.pred2.setText("Please wait...")
         QApplication.processEvents()
@@ -104,6 +101,7 @@ class InputUI(QDialog):
         inputPred = []
 
         print(self.chosenBrand(self.brandCombo.currentText()))
+        # Retrieving dataset based on brand selection
         X_train, X_test, Y_train, Y_test = self.loadDataset(self.chosenBrand(self.brandCombo.currentText()))   
         
         inputPred.append((self.modelEncoder.transform([self.modelCombo.currentText()]))[0])
@@ -119,9 +117,10 @@ class InputUI(QDialog):
         
         timer = time.time()
 
+        # Selecting ML algorithm based on user selection and making predictions
         match self.algorithm:   
             case "LR":
-                LR = linearRegression()
+                LR = linearRegression(iterations = 1000, learning_rate = 0.01)
                 LR.fit(X_train, Y_train)
                 inputPred = self.scaler.transform([inputPred])
                 Y_pred = LR.predict(inputPred)
@@ -138,36 +137,11 @@ class InputUI(QDialog):
                 RF.fit(X_train, Y_train)
                 Y_pred = RF.predict([inputPred])
             
-            case "combined":
-                X_train, X_test, Y_train, Y_test, scaled_X_train, scaled_X_test, scaled_Y_train, scaled_Y_test = self.loadDataset(self.chosenBrand(self.brandCombo.currentText())) 
-                
-                print("GOT HEREE 1")
-                DT = decisionTree(3, 93)
-                DT.fit(X_train, Y_train)
-                Y_pred1 = DT.predict([inputPred])
-
-                print("GOT HEREE 2")
-                RF = randomForest()
-                RF.fit(X_train, Y_train)
-                Y_pred2 = RF.predict([inputPred])
-
-                inputPred = self.scaler.transform([inputPred])
-
-                LR = linearRegression()
-                LR.fit(scaled_X_train, scaled_Y_train)
-                Y_pred3 = LR.predict(inputPred)
-                
-                KNN = nearestNeighbour()
-                Y_pred4 = KNN.predict(scaled_X_train, inputPred, scaled_Y_train, 4)
-                
-                print(Y_pred1, Y_pred2, Y_pred3, Y_pred4)
-                Y_pred = (Y_pred1 + Y_pred2 + Y_pred3 + Y_pred4) / 4
-                
-
-
+        #  Printing price and time taken to predict
         print("\n Predicted price for your car is: £", round(Y_pred[0], 2))
         print("\n ***Predicted in", time.time() - timer,"seconds***")
 
+        # Updating UI to display predicted price and changing to
         pred.label_2.setText("£" + str(round(Y_pred[0], 2)))
         widget.setCurrentIndex(2)
 
@@ -201,18 +175,20 @@ class InputUI(QDialog):
 
         file = pd.read_csv(brand, quotechar='"', skipinitialspace=True)
 
+        # Removes all outliers from the 'year' column
         for i in ['year']:
             q75,q25 = np.percentile(file.loc[:,i],[75,25])
-            IQR = q75-q25
+            IQR = q75-q25 # Interquartile range
         
             maxQ = q75+(1.5*IQR)
             minQ = q25-(1.5*IQR)
         
-            file.loc[file[i] < minQ, i] = np.nan
-            file.loc[file[i] > maxQ, i] = np.nan
+            file.loc[file[i] < minQ, i] = np.nan # Replaces outliers smaller than min with NaN
+            file.loc[file[i] > maxQ, i] = np.nan # Replaces outliers larger than max with NaN
 
-        file = file.dropna(axis = 0)
+        file = file.dropna(axis = 0) # Removes rows with NaN values
 
+        # Turns string values into numerical values using LabelEncoder
         self.modelEncoder.fit(file["model"])
         file["model"] = self.modelEncoder.transform(file["model"])
 
@@ -222,7 +198,7 @@ class InputUI(QDialog):
         self.fuelTypeEncoder.fit(file["fuelType"])
         file["fuelType"] = self.fuelTypeEncoder.transform(file["fuelType"])
 
-        file = file.head(5000)
+        file = file.head(5000) # Limits dataset size to 5,000
 
         match self.algorithm:
             case "DT" | "RF":
@@ -238,34 +214,22 @@ class InputUI(QDialog):
                 X_train = self.scaler.transform(X_train)
                 X_test = self.scaler.transform(X_test)
                 return  X_train, X_test, Y_train, Y_test
-            
-            case "combined":
-                X = file.drop(['price'], axis = 1).to_numpy()
-                Y = file['price'].values.reshape(-1,1)
-                X_train, X_test, Y_train, Y_test = train_test_split(X, Y, random_state = 601)
-
-                X = file.drop(columns = ['price'])
-                Y = file.price
-                scaled_X_train, scaled_X_test, scaled_Y_train, scaled_Y_test = train_test_split(X, Y, random_state = 601)
-                self.scaler.fit(scaled_X_train)
-                scaled_X_train = self.scaler.transform(scaled_X_train)
-                scaled_X_test = self.scaler.transform(scaled_X_test)
-                
-                return  X_train, X_test, Y_train, Y_test, scaled_X_train, scaled_X_test, scaled_Y_train, scaled_Y_test
         
 
     def addModel(self):
-        self.loadDataset(self.chosenBrand(self.brandCombo.currentText()))
-        self.modelCombo.clear()
-        self.modelCombo.addItems(list(self.modelEncoder.classes_))
+        self.loadDataset(self.chosenBrand(self.brandCombo.currentText())) # load the dataset for the selected brand
+        self.modelCombo.clear() # clear the existing car model options
+        self.modelCombo.addItems(list(self.modelEncoder.classes_)) # add the available car models for the selected brand to the combo box
     
     def backPage(self):
-        widget.setCurrentIndex(0)
+        widget.setCurrentIndex(0) # set the current page to the home page (index 0)
 
 class predPage(QDialog):
 
     def __init__(self):
         super().__init__()
+
+        # Load the UI file and set the alignment of the label
         uic.loadUi(path('UI_Files/predictionUI.ui'), self)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
@@ -277,6 +241,7 @@ class predPage(QDialog):
         self.startButton.clicked.connect(self.homePage)
 
 
+    # Clear the input boxes on the InputUI page
     def refreshPage(self):
         Input_UI.pred.clear()
         Input_UI.pred2.clear()
@@ -286,10 +251,12 @@ class predPage(QDialog):
         Input_UI.mpgBox.clear()
         Input_UI.engineBox.clear()
 
+    # Clear the prediction output boxes on the predPage
     def clearText(self):
         Input_UI.pred.clear()
         Input_UI.pred2.clear()
     
+    # Move back to the previous page in the widget stack
     def backPage(self):
         widget.setCurrentIndex(widget.currentIndex() - 1)
     
@@ -300,20 +267,24 @@ class predPage(QDialog):
         
 if __name__ == '__main__':
 
+    # Create a QApplication object and a QStackedWidget object
     app = QApplication(sys.argv)
     widget = QtWidgets.QStackedWidget()
 
+    # Create instances of the UI pages
     UIMenu = mainMenuUI()
     Input_UI = InputUI()
     pred = predPage()
 
+    # Add the UI pages to the widget and set the fixed height and width
     widget.addWidget(UIMenu)
     widget.addWidget(Input_UI)
     widget.addWidget(pred)
     widget.setFixedHeight(700)
     widget.setFixedWidth(1100)
-    widget.show()
 
+    # Show the widget and run the application
+    widget.show()
     try:
         sys.exit(app.exec_())
     except SystemExit:

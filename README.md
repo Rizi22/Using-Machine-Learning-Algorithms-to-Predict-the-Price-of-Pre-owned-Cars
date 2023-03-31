@@ -16,4 +16,6 @@ pre-owned cars.
 
 Dataset: https://www.kaggle.com/datasets/adityadesai13/used-car-dataset-ford-and-mercedes
 
-There are two folder provided: One contains only ipynb files, to provide a clear and well structed demonstartion of the code, and the other folder contains .py files, so that the UI can be run and so that the Random Forest can access the decision tree class.
+- There is a folder called 'Jupyter Notebook' that contains only ipynb files, to provide a clear and well structed demonstartion of the code.
+- There is also an executable file called 'ML Pre-Owned Car Predictor.exe' that you can run to use the GUI.  
+- Otherwise there is a file called UI_interface.
